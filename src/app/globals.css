@@ -139,3 +139,73 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #8B2E2E;
 }
+
+/* Policy page typography */
+.prose-policy h2 {
+  font-family: var(--font-playfair);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #C8973E33;
+}
+.prose-policy h3 {
+  font-family: var(--font-playfair);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.prose-policy p {
+  color: #5C4033CC;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.prose-policy ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.prose-policy ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #5C4033CC;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 0.375rem;
+}
+.prose-policy ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.625rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8B2E2E;
+}
+.prose-policy strong {
+  color: #2C2C2C;
+  font-weight: 600;
+}
+.prose-policy a {
+  color: #8B2E2E;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.prose-policy a:hover {
+  color: #6E2424;
+}
+.prose-policy .info-card {
+  background: white;
+  border: 1px solid #C8973E1A;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}

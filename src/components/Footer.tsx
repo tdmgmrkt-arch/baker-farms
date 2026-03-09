@@ -16,18 +16,17 @@ import {
 } from "lucide-react";
 
 const navigation = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#about" },
-  { label: "Our Meats", href: "#products" },
-  { label: "The Difference", href: "#difference" },
-  { label: "Contact", href: "#order" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/#about" },
+  { label: "Our Meats", href: "/#products" },
+  { label: "The Difference", href: "/#difference" },
+  { label: "Contact", href: "/#order" },
 ];
 
 const customerService = [
-  { label: "Shipping Info", href: "#" },
-  { label: "Return Policy", href: "#" },
-  { label: "FAQ", href: "#" },
-  { label: "Order Tracking", href: "#" },
+  { label: "Shipping Info", href: "/shipping" },
+  { label: "Return Policy", href: "/returns" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const socials = [
@@ -238,13 +237,13 @@ export default function Footer() {
           {/* Center: Policy links */}
           <div className="flex items-center gap-6">
             <Link
-              href="#"
+              href="/privacy"
               className="text-white/40 text-xs hover:text-white/70 transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms"
               className="text-white/40 text-xs hover:text-white/70 transition-colors"
             >
               Terms of Service
