@@ -42,6 +42,7 @@ interface Product {
   included: string[];
   category: Category;
   image: string;
+  paymentLink: string;
 }
 
 const products: Product[] = [
@@ -69,6 +70,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steak2.webp",
+    paymentLink: "https://buy.stripe.com/test_7sY5kD0cZf7x0Po5nW9EI04",
   },
   {
     name: "1/4 Beef",
@@ -93,6 +95,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steaks1.webp",
+    paymentLink: "https://buy.stripe.com/test_aFa28rcZL3oPapY3fO9EI05",
   },
   {
     name: "1/2 Beef",
@@ -119,6 +122,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/meats.webp",
+    paymentLink: "https://buy.stripe.com/test_6oU00j1h3e3tbu2eYw9EI06",
   },
   {
     name: "Whole Beef",
@@ -139,6 +143,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steaks4.webp",
+    paymentLink: "https://buy.stripe.com/test_bJe5kD3pbbVl2XwaIg9EI07",
   },
   // ── Chicken ──
   {
@@ -157,6 +162,7 @@ const products: Product[] = [
     ],
     category: "Chicken",
     image: "/images/chicken.webp",
+    paymentLink: "https://buy.stripe.com/test_aFa28r2l72kL0Po5nW9EI03",
   },
   // ── Lamb ──
   {
@@ -180,6 +186,7 @@ const products: Product[] = [
     ],
     category: "Lamb",
     image: "/images/lamb1.webp",
+    paymentLink: "https://buy.stripe.com/test_3cI3cv1h3aRh41A5nW9EI01",
   },
   {
     name: "Whole Lamb",
@@ -202,6 +209,7 @@ const products: Product[] = [
     ],
     category: "Lamb",
     image: "/images/lamb2.webp",
+    paymentLink: "https://buy.stripe.com/test_cNi5kDgbX5wXdCa4jS9EI08",
   },
 ];
 
@@ -406,17 +414,20 @@ export default function Products() {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.button
+                  <motion.a
+                    href={product.paymentLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 ${
+                    className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 text-center block ${
                       product.popular
                         ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.35)]"
                         : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_6px_20px_rgba(139,46,46,0.25)]"
                     }`}
                   >
                     Reserve Now
-                  </motion.button>
+                  </motion.a>
                 </div>
               </motion.div>
             ))}
