@@ -69,7 +69,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <Link
-                href="#order"
+                href="#products"
                 className="relative inline-flex items-center gap-2 bg-barn-red text-white px-7 py-3 rounded-full text-sm font-semibold tracking-wide overflow-hidden transition-all duration-300 hover:bg-barn-red-dark hover:shadow-[0_8px_30px_rgba(139,46,46,0.35)] hover:-translate-y-0.5 active:translate-y-0"
               >
                 <ShoppingBag className="w-4 h-4" />
@@ -142,7 +142,7 @@ export default function Navbar() {
                   className="mt-8"
                 >
                   <Link
-                    href="#order"
+                    href="#products"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 bg-barn-red text-white px-8 py-4 rounded-full text-base font-semibold tracking-wide hover:bg-barn-red-dark transition-colors"
                   >
