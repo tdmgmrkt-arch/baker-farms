@@ -12,7 +12,9 @@ const interestOptions = [
   { value: "beef", label: "Beef Shares" },
   { value: "chicken", label: "Chicken" },
   { value: "lamb", label: "Lamb" },
-  { value: "bundles", label: "Family Bundles" },
+  { value: "pork", label: "Pork (Seasonal)" },
+  { value: "turkey", label: "Turkey (Seasonal)" },
+  { value: "custom", label: "Custom Beef Boxes" },
   { value: "wholesale", label: "Wholesale" },
 ];
 
@@ -20,12 +22,12 @@ const contactDetails = [
   {
     icon: Phone,
     label: "Phone",
-    value: "(951) 555-BEEF",
+    value: "(951) 348-0235",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "hello@bakerfarms.com",
+    value: "bakermeatco@gmail.com",
   },
   {
     icon: MapPin,

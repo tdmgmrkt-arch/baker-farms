@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 const highlights = [
-  "Family-owned and operated for over 35 years",
+  "Family owned and operated for years",
   "100% grass-fed and pasture-raised livestock",
-  "No antibiotics, hormones, or GMO feed",
+  "No antibiotics, hormones, soy, corn, or GMO feed",
   "Sustainable and regenerative farming practices",
 ];
 
@@ -61,8 +61,8 @@ export default function About() {
               transition={{ delay: 0.5, type: "spring" }}
               className="absolute -bottom-6 right-2 sm:-right-4 lg:-right-8 bg-barn-red text-white rounded-2xl p-4 sm:p-5 shadow-[0_12px_35px_rgba(139,46,46,0.3)]"
             >
-              <span className="font-serif text-3xl font-bold block">35+</span>
-              <span className="text-sm text-white/80">Years of Trust</span>
+              <span className="font-serif text-2xl font-bold block leading-tight">Family</span>
+              <span className="text-sm text-white/80">Owned</span>
             </motion.div>
           </motion.div>
 
@@ -81,14 +81,19 @@ export default function About() {
               <span className="text-barn-red italic">Rooted in Care</span>
             </h2>
             <p className="text-warm-brown/70 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6">
-              For three generations, Baker Farms has been raising livestock the
-              way nature intended — on open pastures, under blue skies, and with
-              an unwavering commitment to quality.
+              For years, Baker Farms has been raising livestock the way nature
+              intended — on open pastures, under blue skies, and with an
+              unwavering commitment to quality.
             </p>
-            <p className="text-warm-brown/70 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10">
+            <p className="text-warm-brown/70 text-sm sm:text-base leading-relaxed mb-4 sm:mb-5">
               We believe that the best meat comes from animals that live the best
               lives. That&apos;s why every cut we offer is pasture-raised, free
               from antibiotics and hormones, and dry-aged for peak flavor.
+            </p>
+            <p className="text-warm-brown/70 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10">
+              Our meats come from Baker Farms along with like-minded farm and
+              ranch partners who share our values and standards — ensuring the
+              same premium quality in every cut, every time.
             </p>
 
             {/* Highlights */}

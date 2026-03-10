@@ -44,7 +44,7 @@ export default function Hero() {
           >
             <div className="h-px w-12 bg-golden" />
             <span className="text-golden-light text-sm font-semibold uppercase tracking-[0.25em]">
-              Family-Owned Since 1987
+              Family Owned &amp; Operated
             </span>
           </motion.div>
 
@@ -67,7 +67,7 @@ export default function Hero() {
             className="text-white/80 text-[0.938rem] sm:text-base lg:text-lg leading-relaxed max-w-lg mb-7 sm:mb-10 font-light drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]"
           >
             Each animal is humanely processed. Delivered fresh from our
-            family farm to your table with care and integrity.
+            farms to your table with care and integrity.
           </motion.p>
 
           {/* CTAs */}
@@ -128,19 +128,19 @@ export default function Hero() {
         <div className="w-px h-16 bg-white/20" />
         <div className="flex flex-col items-center gap-1">
           <span className="font-serif text-3xl font-bold text-golden-light">
-            35+
+            100%
           </span>
           <span className="text-white/50 text-xs uppercase tracking-wider">
-            Years
+            Grass-Fed
           </span>
         </div>
         <div className="w-px h-8 bg-white/20" />
         <div className="flex flex-col items-center gap-1">
           <span className="font-serif text-3xl font-bold text-golden-light">
-            100%
+            Family
           </span>
           <span className="text-white/50 text-xs uppercase tracking-wider">
-            Grass-Fed
+            Owned
           </span>
         </div>
         <div className="w-px h-16 bg-white/20" />

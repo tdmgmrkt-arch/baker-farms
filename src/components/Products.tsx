@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, MapPin, Truck, Snowflake, Beef, Bird, type LucideIcon } from "lucide-react";
+import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, type LucideIcon } from "lucide-react";
 
-type Category = "Beef" | "Chicken" | "Lamb";
+type Category = "Beef" | "Chicken" | "Lamb" | "Pork" | "Turkey";
 
 const LambIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -16,10 +16,22 @@ const LambIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const categories: { label: Category; icon: LucideIcon | typeof LambIcon }[] = [
+const TurkeyIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 18c-3.3 0-6-2-6-5s2.7-5 6-5 6 2 6 5-2.7 5-6 5Z" />
+    <path d="M12 8V5" />
+    <path d="M10 5.5c0-.8.9-1.5 2-1.5s2 .7 2 1.5" />
+    <path d="M9 18v2.5c0 .3.2.5.5.5h1c.3 0 .5-.2.5-.5V18" />
+    <path d="M13 18v2.5c0 .3.2.5.5.5h1c.3 0 .5-.2.5-.5V18" />
+  </svg>
+);
+
+const categories: { label: Category; icon: LucideIcon | typeof LambIcon | typeof TurkeyIcon }[] = [
   { label: "Beef", icon: Beef },
   { label: "Chicken", icon: Bird },
   { label: "Lamb", icon: LambIcon },
+  { label: "Pork", icon: Ham },
+  { label: "Turkey", icon: TurkeyIcon },
 ];
 
 const categoryDescriptions: Record<Category, string | null> = {
@@ -27,6 +39,8 @@ const categoryDescriptions: Record<Category, string | null> = {
   Chicken:
     'Humanely raised premium all-natural chicken — no hormones, antibiotics, soy or corn. All cuts are vacuum-sealed and labeled. <strong>Local pickup only.</strong>',
   Lamb: 'Humanely raised with no hormones, antibiotics, soy or corn. All cuts are vacuum-sealed and labeled. <strong>Local pickup only.</strong>',
+  Pork: 'seasonal',
+  Turkey: 'seasonal',
 };
 
 interface Product {
@@ -43,12 +57,13 @@ interface Product {
   category: Category;
   image: string;
   paymentLink: string;
+  note?: string;
 }
 
 const products: Product[] = [
   // ── Beef ──
   {
-    name: "Baker Beef Box",
+    name: "The Beef Box",
     subtitle: "1/8 Beef",
     weight: "~40 lbs",
     price: "$825",
@@ -76,7 +91,7 @@ const products: Product[] = [
     name: "1/4 Beef",
     subtitle: "Quarter Share",
     weight: "~80 lbs",
-    price: "$1,450",
+    price: "$1,499",
     deposit: "50% deposit to reserve",
     description:
       "Great for couples and smaller families who want a great variety of beef to last several months.",
@@ -100,35 +115,31 @@ const products: Product[] = [
   {
     name: "1/2 Beef",
     subtitle: "Half Share",
-    weight: "~160 lbs",
-    price: "$2,750",
+    weight: "180–220 lbs",
+    price: "$2,999",
     deposit: "50% deposit to reserve",
     description:
       "Ideal for medium to large sized families who do a lot of cooking and want bulk savings.",
-    freezerSpace: "5-7 cubic feet",
-    shipping: "shipping",
+    freezerSpace: "7-10 cubic feet",
+    shipping: "pickup",
     popular: true,
     included: [
-      "6 packages Cube Steak or 5 packages Carne Asada",
-      "Sirloin Steaks (5 packages, 2 per package)",
-      "Ribeye Steaks (5 packages, 2 per package)",
-      "New York Strip Steaks (5 packages, 2 per package)",
-      "Filet Steaks (3 packages, 2 per package)",
-      "Rump Roast",
-      "6 Chuck Roasts",
-      "2 Sirloin Tip Roasts",
-      "5 packages Beef for Stew (1 lb each)",
-      "60–80 lbs Ground Beef (1 lb packages)",
+      "All primary cuts as steaks",
+      "All roasts included",
+      "All ground beef",
+      "Organs included",
+      "Bones cut into small sections for soup and stock",
     ],
     category: "Beef",
     image: "/images/meats.webp",
     paymentLink: "https://buy.stripe.com/test_6oU00j1h3e3tbu2eYw9EI06",
+    note: "Ask us about custom cuts",
   },
   {
     name: "Whole Beef",
     subtitle: "Full Share",
-    weight: "~360 lbs",
-    price: "$5,000",
+    weight: "360–400 lbs",
+    price: "$5,999",
     deposit: "50% deposit to reserve",
     description:
       "Best value for group splits or long-term freezer stocking. Splitting allows you to get even more meat for the money.",
@@ -144,13 +155,14 @@ const products: Product[] = [
     category: "Beef",
     image: "/images/steaks4.webp",
     paymentLink: "https://buy.stripe.com/test_bJe5kD3pbbVl2XwaIg9EI07",
+    note: "Ask us about custom cuts",
   },
   // ── Chicken ──
   {
-    name: "Baker Bird Box",
+    name: "The Bird Box",
     subtitle: "Premium Chicken",
     weight: "~40 lbs",
-    price: "$189",
+    price: "$199",
     deposit: "50% deposit to reserve",
     description:
       "Perfect for people who want monthly chicken without the big freezer commitment. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
@@ -166,50 +178,22 @@ const products: Product[] = [
   },
   // ── Lamb ──
   {
-    name: "1/2 Lamb",
-    subtitle: "Half Share",
-    weight: "~25 lbs",
-    price: "$375",
+    name: "Ground Lamb",
+    subtitle: "Premium Ground",
+    weight: "~20 lbs",
+    price: "$199",
     deposit: "50% deposit to reserve",
     description:
-      "Perfect for couples and small families with a variety of premium cuts.",
-    freezerSpace: "~1 cubic foot",
+      "Premium pasture-raised ground lamb, perfect for burgers, meatballs, kebabs, and more. Vacuum-sealed in convenient packages.",
+    freezerSpace: "1-2 cubic feet",
     shipping: "pickup",
     included: [
-      "Ground Lamb",
-      "Leg of Lamb",
-      "Lamb Chops",
-      "Loin Chops",
-      "Lamb Rack",
-      "Roasts",
-      "Shank & More",
+      "Approx. 20 lbs Ground Lamb",
+      "Vacuum-sealed & labeled",
     ],
     category: "Lamb",
     image: "/images/lamb1.webp",
     paymentLink: "https://buy.stripe.com/test_3cI3cv1h3aRh41A5nW9EI01",
-  },
-  {
-    name: "Whole Lamb",
-    subtitle: "Full Share",
-    weight: "~50 lbs",
-    price: "$700",
-    deposit: "50% deposit to reserve",
-    description:
-      "Ideal for bigger families or meal preppers who want premium meat on hand.",
-    freezerSpace: "~2 cubic feet",
-    shipping: "pickup",
-    included: [
-      "Ground Lamb",
-      "Leg of Lamb",
-      "Lamb Chops",
-      "Loin Chops",
-      "Lamb Rack",
-      "Roasts",
-      "Shanks & More",
-    ],
-    category: "Lamb",
-    image: "/images/lamb2.webp",
-    paymentLink: "https://buy.stripe.com/test_cNi5kDgbX5wXdCa4jS9EI08",
   },
 ];
 
@@ -219,6 +203,7 @@ export default function Products() {
     (p) => p.category === activeCategory
   );
   const description = categoryDescriptions[activeCategory];
+  const isSeasonal = description === "seasonal";
 
   return (
     <section id="products" className="py-12 sm:py-16 lg:py-20 bg-cream">
@@ -252,15 +237,14 @@ export default function Products() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex justify-center mb-10"
         >
-          <div className="inline-flex bg-white rounded-full p-1.5 shadow-[0_4px_20px_rgba(92,64,51,0.08)] border border-golden/10">
+          <div className="inline-flex flex-wrap justify-center bg-white rounded-full p-1.5 shadow-[0_4px_20px_rgba(92,64,51,0.08)] border border-golden/10">
             {categories.map((cat) => (
               <button
                 key={cat.label}
                 onClick={() => {
                   setActiveCategory(cat.label);
-
                 }}
-                className={`px-5 py-2.5 sm:px-8 sm:py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${
+                className={`px-4 py-2 sm:px-7 sm:py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${
                   activeCategory === cat.label
                     ? "bg-barn-red text-white shadow-[0_6px_20px_rgba(139,46,46,0.3)]"
                     : "text-warm-brown hover:text-charcoal hover:bg-cream-dark/50"
@@ -275,7 +259,7 @@ export default function Products() {
 
         {/* Category Description (Chicken & Lamb) */}
         <AnimatePresence mode="wait">
-          {description && (
+          {description && !isSeasonal && (
             <motion.p
               key={activeCategory + "-desc"}
               initial={{ opacity: 0, y: 10 }}
@@ -288,171 +272,234 @@ export default function Products() {
           )}
         </AnimatePresence>
 
-        {/* Product Cards Grid */}
+        {/* Seasonal Message (Pork & Turkey) */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className={`grid gap-5 ${
-              filteredProducts.length === 1
-                ? "grid-cols-1 max-w-sm mx-auto"
-                : filteredProducts.length === 2
-                ? "grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto"
-                : "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
-            }`}
-          >
-            {filteredProducts.map((product, i) => (
-              <motion.div
-                key={product.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
-                  product.popular
-                    ? "border-2 border-barn-red shadow-[0_12px_40px_rgba(139,46,46,0.15)] hover:shadow-[0_20px_50px_rgba(139,46,46,0.2)]"
-                    : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_12px_40px_rgba(92,64,51,0.12)] hover:border-golden/20"
-                }`}
-              >
-                {/* Popular Badge */}
-                {product.popular && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-                    <span className="bg-barn-red text-white text-xs font-bold px-5 py-1.5 rounded-b-xl shadow-lg">
-                      Most Popular
-                    </span>
-                  </div>
+          {isSeasonal && (
+            <motion.div
+              key={activeCategory + "-seasonal"}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="max-w-lg mx-auto text-center py-16"
+            >
+              <div className="w-20 h-20 rounded-full bg-barn-red/10 flex items-center justify-center mx-auto mb-6">
+                {activeCategory === "Pork" ? (
+                  <Ham className="w-9 h-9 text-barn-red" />
+                ) : (
+                  <TurkeyIcon className="w-9 h-9 text-barn-red" />
                 )}
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-4">
+                Seasonal {activeCategory}
+              </h3>
+              <p className="text-warm-brown/70 text-base sm:text-lg leading-relaxed mb-6">
+                Ask us about our seasonal, locally and pasture-raised{" "}
+                <span className="text-barn-red font-semibold">{activeCategory}</span>.
+                Raised with the same standards — no hormones, antibiotics, soy, or corn.
+              </p>
+              <a
+                href="/#order"
+                className="inline-flex items-center gap-2 bg-barn-red text-white px-8 py-3.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.35)]"
+              >
+                Contact Us to Inquire
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-                {/* Image */}
-                <div className="relative h-48 sm:h-36 overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${product.image}')` }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent" />
-                </div>
+        {/* Beef Section Note */}
+        <AnimatePresence mode="wait">
+          {activeCategory === "Beef" && (
+            <motion.p
+              key="beef-custom-note"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="text-center text-barn-red font-semibold text-sm mb-8"
+            >
+              Ask about our Custom Beef Boxes — tailored to your family&apos;s needs.
+            </motion.p>
+          )}
+        </AnimatePresence>
 
-                {/* Content */}
-                <div className="px-5 pt-4 pb-5 sm:pb-5 flex flex-col flex-1">
-                  {/* Name */}
-                  <h3 className="font-serif text-lg font-bold text-charcoal text-center">
-                    {product.name}
-                  </h3>
-                  <p className="text-warm-brown/45 text-xs text-center mt-0.5 mb-3">
-                    {product.subtitle} &bull; {product.weight}
-                  </p>
+        {/* Product Cards Grid */}
+        {!isSeasonal && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className={`grid gap-5 ${
+                filteredProducts.length === 1
+                  ? "grid-cols-1 max-w-sm mx-auto"
+                  : filteredProducts.length === 2
+                  ? "grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto"
+                  : "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
+              }`}
+            >
+              {filteredProducts.map((product, i) => (
+                <motion.div
+                  key={product.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
+                    product.popular
+                      ? "border-2 border-barn-red shadow-[0_12px_40px_rgba(139,46,46,0.15)] hover:shadow-[0_20px_50px_rgba(139,46,46,0.2)]"
+                      : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_12px_40px_rgba(92,64,51,0.12)] hover:border-golden/20"
+                  }`}
+                >
+                  {/* Popular Badge */}
+                  {product.popular && (
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
+                      <span className="bg-barn-red text-white text-xs font-bold px-5 py-1.5 rounded-b-xl shadow-lg">
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
 
-                  {/* Price + Deposit Block */}
-                  <div className="text-center mb-3">
-                    <span className="font-serif text-3xl font-bold text-barn-red leading-none">
-                      {product.price}
-                    </span>
-                    <p className="text-warm-brown/50 text-xs mt-1">
-                      {product.deposit}
-                    </p>
+                  {/* Image */}
+                  <div className="relative h-48 sm:h-36 overflow-hidden">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${product.image}')` }}
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-charcoal/30 to-transparent" />
                   </div>
 
-                  {/* Description */}
-                  <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4 min-h-16">
-                    {product.description}
-                  </p>
+                  {/* Content */}
+                  <div className="px-5 pt-4 pb-5 sm:pb-5 flex flex-col flex-1">
+                    {/* Name */}
+                    <h3 className="font-serif text-lg font-bold text-charcoal text-center">
+                      {product.name}
+                    </h3>
+                    <p className="text-warm-brown/45 text-xs text-center mt-0.5 mb-3">
+                      {product.subtitle} &bull; {product.weight}
+                    </p>
 
-                  {/* Freezer Space + Shipping */}
-                  <div className="space-y-2 mb-4">
-                    <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
-                      <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                        <Snowflake className="w-3 h-3 text-barn-red/50" />
-                        <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">
-                          Freezer Space Needed
-                        </span>
-                      </div>
-                      <p className="text-charcoal font-bold text-xs">
-                        {product.freezerSpace}
+                    {/* Price + Deposit Block */}
+                    <div className="text-center mb-3">
+                      <span className="font-serif text-3xl font-bold text-barn-red leading-none">
+                        {product.price}
+                      </span>
+                      <p className="text-warm-brown/50 text-xs mt-1">
+                        {product.deposit}
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-center gap-1.5">
-                      {product.shipping === "shipping" ? (
-                        <>
-                          <Truck className="w-3 h-3 text-golden" />
-                          <span className="text-golden text-[11px] font-medium">
-                            Shipping Available
+                    {/* Description */}
+                    <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4 min-h-16">
+                      {product.description}
+                    </p>
+
+                    {/* Freezer Space + Shipping */}
+                    <div className="space-y-2 mb-4">
+                      <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
+                        <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                          <Snowflake className="w-3 h-3 text-barn-red/50" />
+                          <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">
+                            Freezer Space Needed
                           </span>
-                        </>
-                      ) : (
-                        <>
-                          <MapPin className="w-3 h-3 text-warm-brown/40" />
-                          <span className="text-warm-brown/40 text-[11px] font-medium">
-                            Local Pickup Only
-                          </span>
-                        </>
-                      )}
+                        </div>
+                        <p className="text-charcoal font-bold text-xs">
+                          {product.freezerSpace}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-center gap-1.5">
+                        {product.shipping === "shipping" ? (
+                          <>
+                            <Truck className="w-3 h-3 text-golden" />
+                            <span className="text-golden text-[11px] font-medium">
+                              Pickup or Shipped to Door
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <MapPin className="w-3 h-3 text-warm-brown/40" />
+                            <span className="text-warm-brown/40 text-[11px] font-medium">
+                              Local Pickup Only
+                            </span>
+                          </>
+                        )}
+                      </div>
                     </div>
+
+                    {/* Note (custom cuts etc.) */}
+                    {product.note && (
+                      <p className="text-barn-red text-[11px] font-semibold text-center mb-3 italic">
+                        {product.note}
+                      </p>
+                    )}
+
+                    {/* Divider */}
+                    <div className="h-px bg-golden/10 mb-4" />
+
+                    {/* What's Included */}
+                    <div className="mb-4 flex-1">
+                      <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
+                        What&apos;s Included:
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {product.included.map((item, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2"
+                          >
+                            <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                            <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA Button */}
+                    <motion.a
+                      href={product.paymentLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 text-center block ${
+                        product.popular
+                          ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.35)]"
+                          : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_6px_20px_rgba(139,46,46,0.25)]"
+                      }`}
+                    >
+                      Reserve Now
+                    </motion.a>
                   </div>
-
-                  {/* Divider */}
-                  <div className="h-px bg-golden/10 mb-4" />
-
-                  {/* What's Included */}
-                  <div className="mb-4 flex-1">
-                    <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
-                      What&apos;s Included:
-                    </h4>
-                    <ul className="space-y-1.5">
-                      {product.included.map((item, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2"
-                        >
-                          <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
-                          <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* CTA Button */}
-                  <motion.a
-                    href={product.paymentLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 text-center block ${
-                      product.popular
-                        ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.35)]"
-                        : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_6px_20px_rgba(139,46,46,0.25)]"
-                    }`}
-                  >
-                    Reserve Now
-                  </motion.a>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        )}
 
         {/* Disclaimer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-10 space-y-1.5"
-        >
-          <p className="text-warm-brown/60 text-sm">
-            <strong className="text-charcoal">
-              50% deposit required to reserve.
-            </strong>{" "}
-            Final weight and pricing confirmed at processing.
-          </p>
-          <p className="text-warm-brown/40 text-xs">
-            The Baker Beef Box, 1/4 and 1/2 shares can be shipped. Whole share
-            is local pickup only in Winchester, CA.
-          </p>
-        </motion.div>
+        {!isSeasonal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-10 space-y-1.5"
+          >
+            <p className="text-warm-brown/60 text-sm">
+              <strong className="text-charcoal">
+                50% deposit required to reserve.
+              </strong>{" "}
+              Final weight and pricing confirmed at processing.
+            </p>
+            <p className="text-warm-brown/40 text-xs">
+              The Beef Box and 1/4 shares can be picked up locally or shipped.
+              1/2 and Whole shares are local pickup only in Winchester, CA.
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

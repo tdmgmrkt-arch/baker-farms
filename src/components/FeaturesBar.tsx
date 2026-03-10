@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, Heart, Sun, ShieldCheck, Flame } from "lucide-react";
+import { Leaf, Heart, Sun, ShieldCheck, Flame, WheatOff } from "lucide-react";
 
 const features = [
   {
@@ -25,6 +25,11 @@ const features = [
     desc: "All natural feed",
   },
   {
+    icon: WheatOff,
+    title: "No Soy / Corn",
+    desc: "Clean nutrition",
+  },
+  {
     icon: Flame,
     title: "Campfire Ready",
     desc: "Perfect for grilling",
@@ -42,7 +47,7 @@ export default function FeaturesBar() {
           transition={{ duration: 0.7 }}
           className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-[0_8px_50px_rgba(92,64,51,0.1)] border border-golden/10 px-6 py-8 lg:px-10 lg:py-10"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-4">
             {features.map((feature, i) => (
               <motion.div
                 key={feature.title}

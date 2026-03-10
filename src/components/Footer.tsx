@@ -7,8 +7,6 @@ import Link from "next/link";
 import {
   Facebook,
   Instagram,
-  Twitter,
-  Youtube,
   ArrowRight,
   CreditCard,
   Lock,
@@ -30,10 +28,8 @@ const customerService = [
 ];
 
 const socials = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Facebook, href: "https://www.facebook.com/bakermeatco", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/bakermeatco", label: "Instagram" },
 ];
 
 function FooterAccordion({
@@ -140,9 +136,9 @@ export default function Footer() {
               />
             </div>
             <p className="text-white/45 text-sm leading-relaxed max-w-xs mb-8">
-              Family-owned and operated for over 35 years in Winchester,
-              California. Ethically raised, pasture-to-plate premium meats
-              delivered with care and integrity.
+              Family owned and operated in Winchester, California. Premium
+              pasture-raised meats from our farms to your table — delivered
+              with care and integrity.
             </p>
             <div className="flex items-center gap-3">
               {socials.map((social) => (
