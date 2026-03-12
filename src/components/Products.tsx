@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, type LucideIcon } from "lucide-react";
+import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, ChevronDown, type LucideIcon } from "lucide-react";
 
 type Category = "Beef" | "Chicken" | "Lamb" | "Pork" | "Turkey";
 
@@ -51,9 +51,10 @@ interface Product {
   deposit: string;
   description: string;
   freezerSpace: string;
-  shipping: "shipping" | "pickup";
+  shipping: "shipping" | "pickup" | "both";
   popular?: boolean;
   included: string[];
+  includedPickup?: string[];
   category: Category;
   image: string;
   paymentLink: string;
@@ -121,19 +122,31 @@ const products: Product[] = [
     description:
       "Ideal for medium to large sized families who do a lot of cooking and want bulk savings.",
     freezerSpace: "7-10 cubic feet",
-    shipping: "pickup",
+    shipping: "both",
     popular: true,
     included: [
-      "All primary cuts as steaks",
-      "All roasts included",
-      "All ground beef",
-      "Organs included",
+      "6 packages Cube Steak or 5 packages Carne Asada",
+      "Sirloin Steaks (5 packages, 2 per package)",
+      "Ribeye Steaks (5 packages, 2 per package)",
+      "New York Strip Steaks (5 packages, 2 per package)",
+      "Filet Steaks (3 packages, 2 per package)",
+      "1 Rump Roast",
+      "6 Chuck Roasts",
+      "2 Sirloin Tip Roasts",
+      "5 packages Beef for Stew (1 lb each)",
+      "60–80 lbs Ground Beef (1 lb packages)",
+    ],
+    includedPickup: [
+      "Primary cuts as steaks",
+      "Roasts",
+      "Ground Beef",
+      "Organs",
       "Bones cut into small sections for soup and stock",
     ],
     category: "Beef",
     image: "/images/meats.webp",
     paymentLink: "https://buy.stripe.com/test_6oU00j1h3e3tbu2eYw9EI06",
-    note: "Ask us about custom cuts",
+    note: "Inquire about custom cuts for pickup.",
   },
   {
     name: "Whole Beef",
@@ -155,7 +168,7 @@ const products: Product[] = [
     category: "Beef",
     image: "/images/steaks4.webp",
     paymentLink: "https://buy.stripe.com/test_bJe5kD3pbbVl2XwaIg9EI07",
-    note: "Ask us about custom cuts",
+    note: "Inquire about custom cuts for pickup.",
   },
   // ── Chicken ──
   {
@@ -196,6 +209,43 @@ const products: Product[] = [
     paymentLink: "https://buy.stripe.com/test_3cI3cv1h3aRh41A5nW9EI01",
   },
 ];
+
+function PickupAccordion({ items }: { items: string[] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-3">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-2 px-3 rounded-lg bg-cream border border-golden/10 hover:border-golden/20 transition-colors"
+      >
+        <span className="text-charcoal font-bold text-[10px] uppercase tracking-wider">
+          Local Pickup — What&apos;s Included
+        </span>
+        <ChevronDown
+          className={`w-3.5 h-3.5 text-warm-brown/40 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden space-y-1.5 mt-2"
+          >
+            {items.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2">
+                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState<Category>("Beef");
@@ -411,7 +461,7 @@ export default function Products() {
                       </div>
 
                       <div className="flex items-center justify-center gap-1.5">
-                        {product.shipping === "shipping" ? (
+                        {product.shipping === "shipping" || product.shipping === "both" ? (
                           <>
                             <Truck className="w-3 h-3 text-golden" />
                             <span className="text-golden text-[11px] font-medium">
@@ -441,20 +491,36 @@ export default function Products() {
 
                     {/* What's Included */}
                     <div className="mb-4 flex-1">
-                      <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
-                        What&apos;s Included:
-                      </h4>
-                      <ul className="space-y-1.5">
-                        {product.included.map((item, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-start gap-2"
-                          >
-                            <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
-                            <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {product.includedPickup ? (
+                        <>
+                          <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
+                            Shipped — What&apos;s Included:
+                          </h4>
+                          <ul className="space-y-1.5 mb-4">
+                            {product.included.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <PickupAccordion items={product.includedPickup} />
+                        </>
+                      ) : (
+                        <>
+                          <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
+                            What&apos;s Included:
+                          </h4>
+                          <ul className="space-y-1.5">
+                            {product.included.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
                     </div>
 
                     {/* CTA Button */}
