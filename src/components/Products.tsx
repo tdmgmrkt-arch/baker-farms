@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, ChevronDown, type LucideIcon } from "lucide-react";
+import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, ChevronDown, CreditCard, type LucideIcon } from "lucide-react";
 
 type Category = "Beef" | "Chicken" | "Lamb" | "Pork" | "Turkey";
 
@@ -68,7 +68,7 @@ const products: Product[] = [
     subtitle: "1/8 Beef",
     weight: "~40 lbs",
     price: "$825",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
       "Perfect for first time buyers or people who want monthly pasture raised beef without the big freezer commitment.",
     freezerSpace: "1-2 cubic feet",
@@ -93,11 +93,12 @@ const products: Product[] = [
     subtitle: "Quarter Share",
     weight: "~80 lbs",
     price: "$1,499",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
       "Great for couples and smaller families who want a great variety of beef to last several months.",
     freezerSpace: "2-4 cubic feet",
     shipping: "shipping",
+    popular: true,
     included: [
       "3 packages Cube Steak or Carne Asada",
       "Sirloin Steaks (2 packages, 2 per package)",
@@ -116,14 +117,13 @@ const products: Product[] = [
   {
     name: "1/2 Beef",
     subtitle: "Half Share",
-    weight: "180–220 lbs",
+    weight: "~160 - 220 lbs",
     price: "$2,999",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
-      "Ideal for medium to large sized families who do a lot of cooking and want bulk savings.",
+      "Ideal for medium to large families. ~160 lbs shipped (boneless) / 180–220 lbs pickup (with bones & organs).",
     freezerSpace: "7-10 cubic feet",
     shipping: "both",
-    popular: true,
     included: [
       "6 packages Cube Steak or 5 packages Carne Asada",
       "Sirloin Steaks (5 packages, 2 per package)",
@@ -153,7 +153,7 @@ const products: Product[] = [
     subtitle: "Full Share",
     weight: "360–400 lbs",
     price: "$5,999",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
       "Best value for group splits or long-term freezer stocking. Splitting allows you to get even more meat for the money.",
     freezerSpace: "14-20 cubic feet",
@@ -176,7 +176,7 @@ const products: Product[] = [
     subtitle: "Premium Chicken",
     weight: "~40 lbs",
     price: "$199",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
       "Perfect for people who want monthly chicken without the big freezer commitment. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
     freezerSpace: "1-2 cubic feet",
@@ -195,17 +195,17 @@ const products: Product[] = [
     subtitle: "Premium Ground",
     weight: "~20 lbs",
     price: "$199",
-    deposit: "50% deposit to reserve",
+    deposit: "Full payment at checkout",
     description:
       "Premium pasture-raised ground lamb, perfect for burgers, meatballs, kebabs, and more. Vacuum-sealed in convenient packages.",
-    freezerSpace: "1-2 cubic feet",
+    freezerSpace: "~1 cubic foot",
     shipping: "pickup",
     included: [
       "Approx. 20 lbs Ground Lamb",
       "Vacuum-sealed & labeled",
     ],
     category: "Lamb",
-    image: "/images/lamb1.webp",
+    image: "/images/lamb2.webp",
     paymentLink: "https://buy.stripe.com/test_3cI3cv1h3aRh41A5nW9EI01",
   },
 ];
@@ -399,19 +399,10 @@ export default function Products() {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
                     product.popular
-                      ? "border-2 border-barn-red shadow-[0_12px_40px_rgba(139,46,46,0.15)] hover:shadow-[0_20px_50px_rgba(139,46,46,0.2)]"
+                      ? "border-2 border-[#D4A520] shadow-[0_12px_40px_rgba(212,165,32,0.15)] hover:shadow-[0_20px_50px_rgba(212,165,32,0.2)]"
                       : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_12px_40px_rgba(92,64,51,0.12)] hover:border-golden/20"
                   }`}
                 >
-                  {/* Popular Badge */}
-                  {product.popular && (
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-                      <span className="bg-barn-red text-white text-xs font-bold px-5 py-1.5 rounded-b-xl shadow-lg">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-
                   {/* Image */}
                   <div className="relative h-48 sm:h-36 overflow-hidden">
                     <div
@@ -419,6 +410,14 @@ export default function Products() {
                       style={{ backgroundImage: `url('${product.image}')` }}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-charcoal/30 to-transparent" />
+                    {/* Popular Badge */}
+                    {product.popular && (
+                      <div className="absolute top-0 left-0 right-0 flex justify-center z-10">
+                        <span className="bg-[#D4A520] text-white text-xs font-bold uppercase tracking-wide px-6 py-2 rounded-b-lg shadow-[0_8px_24px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+                          ★ Most Popular
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -470,21 +469,14 @@ export default function Products() {
                           </>
                         ) : (
                           <>
-                            <MapPin className="w-3 h-3 text-warm-brown/40" />
-                            <span className="text-warm-brown/40 text-[11px] font-medium">
+                            <MapPin className="w-3 h-3 text-golden" />
+                            <span className="text-golden text-[11px] font-medium">
                               Local Pickup Only
                             </span>
                           </>
                         )}
                       </div>
                     </div>
-
-                    {/* Note (custom cuts etc.) */}
-                    {product.note && (
-                      <p className="text-barn-red text-[11px] font-semibold text-center mb-3 italic">
-                        {product.note}
-                      </p>
-                    )}
 
                     {/* Divider */}
                     <div className="h-px bg-golden/10 mb-4" />
@@ -523,6 +515,13 @@ export default function Products() {
                       )}
                     </div>
 
+                    {/* Note (custom cuts etc.) */}
+                    {product.note && (
+                      <p className="text-barn-red text-[11px] font-semibold text-center mb-3 italic">
+                        {product.note}
+                      </p>
+                    )}
+
                     {/* CTA Button */}
                     <motion.a
                       href={product.paymentLink}
@@ -532,11 +531,11 @@ export default function Products() {
                       whileTap={{ scale: 0.98 }}
                       className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 text-center block ${
                         product.popular
-                          ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.35)]"
+                          ? "bg-[#D4A520] text-white hover:bg-[#C9990A] hover:shadow-[0_8px_25px_rgba(212,165,32,0.35)]"
                           : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_6px_20px_rgba(139,46,46,0.25)]"
                       }`}
                     >
-                      Reserve Now
+                      Order Now
                     </motion.a>
                   </div>
                 </motion.div>
@@ -554,16 +553,23 @@ export default function Products() {
             transition={{ delay: 0.4 }}
             className="text-center mt-10 space-y-1.5"
           >
-            <p className="text-warm-brown/60 text-sm">
-              <strong className="text-charcoal">
-                50% deposit required to reserve.
-              </strong>{" "}
-              Final weight and pricing confirmed at processing.
-            </p>
-            <p className="text-warm-brown/40 text-xs">
-              The Beef Box and 1/4 shares can be picked up locally or shipped.
-              1/2 and Whole shares are local pickup only in Winchester, CA.
-            </p>
+            <div className="mx-auto space-y-2.5">
+              <div className="bg-white border border-golden/20 rounded-xl px-5 py-3.5 shadow-[0_2px_12px_rgba(92,64,51,0.06)] text-center">
+                <p className="text-warm-brown/70 text-sm leading-relaxed">
+                  <CreditCard className="w-4 h-4 text-golden inline-block align-text-bottom mr-1.5" />
+                  <strong className="text-charcoal">Full payment required at checkout.</strong>{" "}
+                  All pricing reflects estimated final yield.
+                </p>
+              </div>
+              <div className="bg-white border border-golden/20 rounded-xl px-5 py-3.5 shadow-[0_2px_12px_rgba(92,64,51,0.06)] text-center">
+                <p className="text-warm-brown/70 text-sm leading-relaxed">
+                  <Truck className="w-4 h-4 text-golden inline-block align-text-bottom mr-1.5" />
+                  The Beef Box, 1/4, and 1/2 shares can be picked up locally or shipped{" "}
+                  <strong className="text-charcoal">(Southern California only)</strong>.
+                  Whole Beef is local pickup only in Winchester, CA.
+                </p>
+              </div>
+            </div>
           </motion.div>
         )}
       </div>

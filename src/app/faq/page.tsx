@@ -16,30 +16,30 @@ export default function FAQPage() {
 
       <h3>How do I place an order?</h3>
       <p>
-        Browse our products on the homepage and click <strong>"Reserve Now"</strong>{" "}
-        on any product. You'll be taken to a secure checkout page to pay your 50%
-        deposit. Once your deposit is received, we'll confirm your order within
-        1–2 business days.
+        Browse our products on the homepage and click{" "}
+        <strong>&quot;Order Now&quot;</strong> on any product. You'll be taken to
+        a secure checkout page to complete your full payment. Once payment is
+        received, we'll confirm your order within 1–2 business days.
       </p>
 
-      <h3>What does "50% deposit to reserve" mean?</h3>
+      <h3>How does payment work?</h3>
       <p>
-        Because our meats are processed in small batches, we require a 50% deposit
-        to secure your share. The remaining balance is due when your order is
-        ready for pickup or before it ships. Final pricing is based on actual
-        hanging weight.
+        Full payment is required at checkout to secure your order. All payments
+        are processed securely through Stripe. Final pricing is based on actual
+        hanging weight and may be adjusted slightly after processing.
       </p>
 
       <h3>Can I customize my order or choose specific cuts?</h3>
       <p>
         Our shares come with a standard cut list, but we're happy to work with
-        you on preferences when possible. Contact us after placing your deposit
-        to discuss any special requests.
+        you on preferences when possible. Contact us after placing your order to
+        discuss any special requests. Custom cuts are available on the 1/2 and
+        Whole Beef local pickup options.
       </p>
 
       <h2>Our Meats</h2>
 
-      <h3>What does "grass-fed and finished" mean?</h3>
+      <h3>What does &quot;grass-fed and finished&quot; mean?</h3>
       <p>
         Our cattle are raised on pasture their entire lives and are never
         transitioned to grain feed in a feedlot. They eat grass from start to
@@ -64,13 +64,12 @@ export default function FAQPage() {
       <h3>How much freezer space do I need?</h3>
       <p>Each share requires different amounts of space:</p>
       <ul>
-        <li><strong>Baker Beef Box (1/8):</strong> 1–2 cubic feet</li>
+        <li><strong>The Beef Box (1/8):</strong> 1–2 cubic feet</li>
         <li><strong>1/4 Beef:</strong> 2–4 cubic feet</li>
-        <li><strong>1/2 Beef:</strong> 5–7 cubic feet</li>
+        <li><strong>1/2 Beef:</strong> 7–10 cubic feet</li>
         <li><strong>Whole Beef:</strong> 14–20 cubic feet</li>
-        <li><strong>Baker Bird Box:</strong> 1–2 cubic feet</li>
-        <li><strong>1/2 Lamb:</strong> ~1 cubic foot</li>
-        <li><strong>Whole Lamb:</strong> ~2 cubic feet</li>
+        <li><strong>The Bird Box:</strong> 1–2 cubic feet</li>
+        <li><strong>Ground Lamb:</strong> ~1 cubic foot</li>
       </ul>
 
       <h3>How long will the meat last in the freezer?</h3>
@@ -84,10 +83,18 @@ export default function FAQPage() {
 
       <h3>Which products can be shipped?</h3>
       <p>
-        The <strong>Baker Beef Box</strong>, <strong>1/4 Beef</strong>, and{" "}
-        <strong>1/2 Beef</strong> are available for shipping within the
-        continental United States. All other products are local pickup only in
-        Winchester, CA.
+        The <strong>Beef Box</strong>, <strong>1/4 Beef</strong>, and{" "}
+        <strong>1/2 Beef</strong> are available for shipping within Southern
+        California. The 1/2 Beef is also available for local pickup. All other
+        products are local pickup only in Winchester, CA.
+      </p>
+
+      <h3>Why is the 1/2 Beef a different weight for shipping vs. pickup?</h3>
+      <p>
+        Shipped 1/2 Beef orders are approximately <strong>160 lbs</strong> of
+        boneless cuts (steaks, roasts, ground beef). Local pickup orders are{" "}
+        <strong>180–220 lbs</strong> because they include bones and organs in
+        addition to all boneless cuts.
       </p>
 
       <h3>How is meat shipped?</h3>
@@ -104,7 +111,13 @@ export default function FAQPage() {
         cooler if you're traveling more than 30 minutes.
       </p>
 
-      <h2>Payment</h2>
+      <h3>How long does it take to receive my order?</h3>
+      <ul>
+        <li><strong>Local Pickup:</strong> Allow 2–4 weeks for processing</li>
+        <li><strong>Shipping:</strong> Allow 4–6 weeks for processing and delivery</li>
+      </ul>
+
+      <h2>Payment & Cancellations</h2>
 
       <h3>What payment methods do you accept?</h3>
       <p>
@@ -112,18 +125,19 @@ export default function FAQPage() {
         payment information is never stored on our servers.
       </p>
 
-      <h3>Is my deposit refundable?</h3>
+      <h3>What is your cancellation policy?</h3>
       <p>
-        Deposits are fully refundable if you cancel before your animal enters
-        processing. Once processing begins, deposits are non-refundable. See our{" "}
-        <a href="/returns">Return Policy</a> for full details.
+        If you need to cancel your order, please contact us as soon as possible.
+        Cancellations made before your animal enters processing are eligible for
+        a full refund. Once processing has begun, orders are non-refundable. See
+        our <a href="/returns">Return Policy</a> for full details.
       </p>
 
       <h2>Still Have Questions?</h2>
       <p>
         We're here to help. Reach out to us at{" "}
-        <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a> or call{" "}
-        <strong>(951) 555-BEEF</strong> and we'll be happy to assist you.
+        <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a> or call{" "}
+        <strong>(951) 348-0235</strong> and we'll be happy to assist you.
       </p>
     </PolicyLayout>
   );

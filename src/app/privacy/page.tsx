@@ -16,10 +16,11 @@ export default function PrivacyPage() {
         <strong>Effective Date:</strong> January 1, 2026
       </p>
       <p>
-        Baker Farms Premium Meats ("we," "our," or "us") respects your privacy
-        and is committed to protecting the personal information you share with
-        us. This Privacy Policy explains how we collect, use, and safeguard your
-        information when you visit our website or place an order.
+        Baker Farms Premium Meats (&quot;we,&quot; &quot;our,&quot; or
+        &quot;us&quot;) respects your privacy and is committed to protecting the
+        personal information you share with us. This Privacy Policy explains how
+        we collect, use, and safeguard your information when you visit our
+        website or place an order.
       </p>
 
       <h2>Information We Collect</h2>
@@ -65,7 +66,7 @@ export default function PrivacyPage() {
         All payment transactions are processed through{" "}
         <strong>Stripe</strong>, a PCI-DSS Level 1 certified payment processor.
         We do not store your credit card number or full payment details on our
-        servers. Stripe's security practices can be reviewed at{" "}
+        servers. Stripe&apos;s security practices can be reviewed at{" "}
         <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">
           stripe.com/privacy
         </a>.
@@ -109,8 +110,8 @@ export default function PrivacyPage() {
         </li>
       </ul>
       <p>
-        You can control cookie preferences through your browser settings. Disabling
-        cookies may affect some website functionality.
+        You can control cookie preferences through your browser settings.
+        Disabling cookies may affect some website functionality.
       </p>
 
       <h2>Your Rights</h2>
@@ -149,9 +150,10 @@ export default function PrivacyPage() {
       </p>
       <ul>
         <li>
-          Email: <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a>
+          Email:{" "}
+          <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a>
         </li>
-        <li>Phone: (951) 555-BEEF</li>
+        <li>Phone: (951) 348-0235</li>
         <li>Address: Baker Farms, Winchester, California</li>
       </ul>
     </PolicyLayout>

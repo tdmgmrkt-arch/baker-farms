@@ -37,25 +37,21 @@ export default function ReturnsPage() {
         issue so we can assess and respond quickly.
       </p>
 
-      <h2>Deposits</h2>
+      <h2>Payments & Cancellations</h2>
       <p>
-        All orders require a <strong>50% deposit</strong> to reserve your share.
-        Deposits are refundable under the following conditions:
+        All orders require <strong>full payment at checkout</strong> to secure
+        your share. Payments are processed securely through Stripe.
       </p>
       <ul>
         <li>
-          <strong>Cancellation before processing:</strong> Full deposit refund if
-          you cancel before your animal enters processing
+          <strong>Cancellation before processing:</strong> Full refund if you
+          cancel before your animal enters processing
         </li>
         <li>
-          <strong>Cancellation during processing:</strong> Deposits are
+          <strong>Cancellation during or after processing:</strong> Orders are
           non-refundable once your animal has entered the processing stage
         </li>
       </ul>
-      <p>
-        The remaining balance is due upon pickup or before shipping. Final
-        pricing is based on the actual hanging weight of your animal.
-      </p>
 
       <h2>What We Cannot Accept</h2>
       <p>
@@ -75,9 +71,9 @@ export default function ReturnsPage() {
       </p>
       <ul>
         <li>
-          Email: <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a>
+          Email: <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a>
         </li>
-        <li>Phone: (951) 555-BEEF</li>
+        <li>Phone: (951) 348-0235</li>
       </ul>
       <p>
         We review all claims promptly and will respond within{" "}

@@ -45,7 +45,7 @@ export default function Navbar() {
                 alt="Baker Farms Premium Meats"
                 width={160}
                 height={80}
-                className="h-12 sm:h-14 lg:h-18 w-auto object-contain"
+                className="h-14 sm:h-16 lg:h-22 w-auto object-contain"
                 priority
               />
             </Link>

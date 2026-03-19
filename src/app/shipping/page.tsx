@@ -10,7 +10,7 @@ export default function ShippingPage() {
   return (
     <PolicyLayout
       title="Shipping Information"
-      subtitle="How we get premium pasture-raised meats from our farm to your freezer."
+      subtitle="How we get premium pasture-raised meats from our farms to your freezer."
     >
       <h2>Delivery Methods</h2>
       <p>
@@ -22,7 +22,7 @@ export default function ShippingPage() {
       <h3>Local Pickup — Winchester, CA</h3>
       <p>
         All products are available for local pickup at our farm in Winchester,
-        California. After your order is processed and your meat is ready, we'll
+        California. After your order is confirmed and your meat is ready, we'll
         contact you to schedule a convenient pickup time.
       </p>
       <ul>
@@ -33,16 +33,36 @@ export default function ShippingPage() {
 
       <h3>Shipping — Select Products</h3>
       <p>
-        The <strong>Baker Beef Box (1/8 Beef)</strong>, <strong>1/4 Beef</strong>,
+        The <strong>Beef Box (1/8 Beef)</strong>, <strong>1/4 Beef</strong>,
         and <strong>1/2 Beef</strong> shares are available for shipping. We ship
         using insulated packaging with dry ice to ensure your meat stays frozen
         during transit.
       </p>
       <ul>
         <li>Orders are shipped Monday–Wednesday to avoid weekend delays</li>
-        <li>Shipping is available within the continental United States</li>
         <li>You'll receive tracking information via email once your order ships</li>
         <li>Shipping costs are calculated at checkout based on weight and destination</li>
+      </ul>
+      <p>
+        <strong>Note:</strong> Current shipping pricing applies to Southern
+        California only. Please contact us for shipping inquiries outside this
+        area.
+      </p>
+
+      <h3>1/2 Beef — Shipped vs. Pickup</h3>
+      <p>
+        The 1/2 Beef share is available for both shipping and local pickup.
+        Please note the weight difference:
+      </p>
+      <ul>
+        <li>
+          <strong>Shipped:</strong> ~160 lbs of boneless cuts (steaks, roasts,
+          ground beef)
+        </li>
+        <li>
+          <strong>Local Pickup:</strong> 180–220 lbs, which includes bones and
+          organs in addition to all boneless cuts
+        </li>
       </ul>
 
       <h2>Pickup-Only Products</h2>
@@ -52,19 +72,27 @@ export default function ShippingPage() {
       </p>
       <ul>
         <li>Whole Beef</li>
-        <li>Baker Bird Box (Chicken)</li>
-        <li>1/2 Lamb</li>
-        <li>Whole Lamb</li>
+        <li>The Bird Box (Chicken)</li>
+        <li>Ground Lamb</li>
       </ul>
+      <p>
+        Seasonal <strong>Pork</strong> and <strong>Turkey</strong> are also
+        available for local pickup only when in season.
+      </p>
 
       <h2>Processing & Lead Times</h2>
       <p>
         Because our meats are processed in small batches, please allow time for
-        your order to be prepared. After placing your deposit:
+        your order to be prepared. After placing your order:
       </p>
       <ul>
         <li>We'll confirm your order within 1–2 business days</li>
-        <li>Processing typically takes 2–4 weeks depending on the product and season</li>
+        <li>
+          <strong>Local Pickup:</strong> Allow 2–4 weeks for processing
+        </li>
+        <li>
+          <strong>Shipping:</strong> Allow 4–6 weeks for processing and delivery
+        </li>
         <li>You'll be notified when your order is ready for pickup or shipment</li>
       </ul>
 
@@ -79,8 +107,8 @@ export default function ShippingPage() {
       <p>
         If you have any questions about shipping or pickup, please don't hesitate
         to reach out at{" "}
-        <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a> or call
-        us at <strong>(951) 555-BEEF</strong>.
+        <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a> or call
+        us at <strong>(951) 348-0235</strong>.
       </p>
     </PolicyLayout>
   );

@@ -21,19 +21,16 @@ export default function TermsPage() {
         read them carefully.
       </p>
 
-      <h2>Orders & Deposits</h2>
+      <h2>Orders & Payment</h2>
       <p>
-        All orders require a <strong>50% deposit</strong> to reserve your share.
-        By placing a deposit, you are agreeing to purchase the selected product
-        at the listed price, subject to final weight adjustment.
+        All orders require <strong>full payment at checkout</strong> to secure
+        your share. By completing payment, you are agreeing to purchase the
+        selected product at the listed price, subject to final weight adjustment.
       </p>
       <ul>
         <li>
-          Deposits are processed securely through Stripe and are confirmed via
+          Payments are processed securely through Stripe and are confirmed via
           email
-        </li>
-        <li>
-          The remaining balance is due upon pickup or before shipment
         </li>
         <li>
           Final pricing is based on the actual hanging weight of your animal and
@@ -45,17 +42,16 @@ export default function TermsPage() {
       <ul>
         <li>
           <strong>Before processing:</strong> You may cancel your order and
-          receive a full deposit refund if your animal has not yet entered
-          processing
+          receive a full refund if your animal has not yet entered processing
         </li>
         <li>
-          <strong>During or after processing:</strong> Deposits are
-          non-refundable once your animal has entered the processing stage
+          <strong>During or after processing:</strong> Orders are non-refundable
+          once your animal has entered the processing stage
         </li>
       </ul>
       <p>
         To cancel an order, please contact us as soon as possible at{" "}
-        <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a>.
+        <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a>.
       </p>
 
       <h2>Product Descriptions & Pricing</h2>
@@ -73,7 +69,7 @@ export default function TermsPage() {
           animal size and processor availability
         </li>
         <li>
-          Prices are subject to change without notice, but confirmed deposits
+          Prices are subject to change without notice, but confirmed orders
           will be honored at the price at the time of purchase
         </li>
       </ul>
@@ -81,9 +77,10 @@ export default function TermsPage() {
       <h2>Shipping & Delivery</h2>
       <p>
         Products eligible for shipping will be sent using insulated packaging
-        with dry ice via expedited carriers. Baker Farms is not responsible for
-        delays caused by shipping carriers, weather events, or other
-        circumstances beyond our control.
+        with dry ice via expedited carriers. Current shipping pricing applies to
+        Southern California only. Baker Farms is not responsible for delays
+        caused by shipping carriers, weather events, or other circumstances
+        beyond our control.
       </p>
       <p>
         If your shipment arrives damaged or thawed, please contact us within{" "}
@@ -153,9 +150,9 @@ export default function TermsPage() {
       </p>
       <ul>
         <li>
-          Email: <a href="mailto:hello@bakerfarms.com">hello@bakerfarms.com</a>
+          Email: <a href="mailto:bakermeatco@gmail.com">bakermeatco@gmail.com</a>
         </li>
-        <li>Phone: (951) 555-BEEF</li>
+        <li>Phone: (951) 348-0235</li>
         <li>Address: Baker Farms, Winchester, California</li>
       </ul>
     </PolicyLayout>

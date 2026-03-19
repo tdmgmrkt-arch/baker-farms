@@ -37,7 +37,7 @@ export default function PolicyLayout({
 
       {/* Content */}
       <div className="bg-cream">
-        <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10 py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 py-12 sm:py-16 lg:py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

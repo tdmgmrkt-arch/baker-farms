@@ -10,7 +10,7 @@ const differentiators = [
   },
   {
     image: "/images/rotationallygrazedpastures.webp",
-    title: "Rotationally Grazed Pastures",
+    title: "Rotational Grazing",
     desc: "Our cattle graze on nutrient-rich, rotationally managed pastures. This regenerative method enriches the soil and produces healthier animals.",
   },
   {
