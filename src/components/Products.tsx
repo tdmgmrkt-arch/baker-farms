@@ -86,7 +86,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steak2.webp",
-    paymentLink: "https://buy.stripe.com/test_7sY5kD0cZf7x0Po5nW9EI04",
+    paymentLink: "https://buy.stripe.com/8x214nbXA6uL8SwboufEk08",
   },
   {
     name: "1/4 Beef",
@@ -112,7 +112,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steaks1.webp",
-    paymentLink: "https://buy.stripe.com/test_aFa28rcZL3oPapY3fO9EI05",
+    paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
   },
   {
     name: "1/2 Beef",
@@ -145,7 +145,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/meats.webp",
-    paymentLink: "https://buy.stripe.com/test_6oU00j1h3e3tbu2eYw9EI06",
+    paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
     note: "Inquire about custom cuts for pickup.",
   },
   {
@@ -167,7 +167,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steaks4.webp",
-    paymentLink: "https://buy.stripe.com/test_bJe5kD3pbbVl2XwaIg9EI07",
+    paymentLink: "https://buy.stripe.com/5kQeVd1iW1argkY9gmfEk0b",
     note: "Inquire about custom cuts for pickup.",
   },
   // ── Chicken ──
@@ -187,7 +187,7 @@ const products: Product[] = [
     ],
     category: "Chicken",
     image: "/images/chicken.webp",
-    paymentLink: "https://buy.stripe.com/test_aFa28r2l72kL0Po5nW9EI03",
+    paymentLink: "https://buy.stripe.com/9B6bJ13r4bP55GkeAGfEk07",
   },
   // ── Lamb ──
   {
@@ -206,7 +206,7 @@ const products: Product[] = [
     ],
     category: "Lamb",
     image: "/images/lamb2.webp",
-    paymentLink: "https://buy.stripe.com/test_3cI3cv1h3aRh41A5nW9EI01",
+    paymentLink: "https://buy.stripe.com/aFa9AT9Psg5lfgU3W2fEk0c",
   },
 ];
 
