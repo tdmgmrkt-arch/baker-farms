@@ -28,8 +28,8 @@ const customerService = [
 ];
 
 const socials = [
-  { icon: Facebook, href: "https://www.facebook.com/bakermeatco", label: "Facebook" },
-  { icon: Instagram, href: "https://www.instagram.com/bakermeatco", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61585416254981&mibextid=wwXIfr", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/baker.farms", label: "Instagram" },
 ];
 
 function FooterAccordion({
