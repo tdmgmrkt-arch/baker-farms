@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, ChevronDown, CreditCard, type LucideIcon } from "lucide-react";
+import { Check, MapPin, Truck, Snowflake, Beef, Bird, Ham, CreditCard, type LucideIcon } from "lucide-react";
 
 type Category = "Beef" | "Chicken" | "Lamb" | "Pork" | "Turkey";
 
@@ -54,11 +54,18 @@ interface Product {
   shipping: "shipping" | "pickup" | "both";
   popular?: boolean;
   included: string[];
-  includedPickup?: string[];
   category: Category;
   image: string;
   paymentLink: string;
+  pickupLink?: string;
   note?: string;
+  pickup?: {
+    price: string;
+    weight: string;
+    description: string;
+    included: string[];
+    note?: string;
+  };
 }
 
 const products: Product[] = [
@@ -87,6 +94,7 @@ const products: Product[] = [
     category: "Beef",
     image: "/images/steak2.webp",
     paymentLink: "https://buy.stripe.com/8x214nbXA6uL8SwboufEk08",
+    pickupLink: "https://buy.stripe.com/00wcN5bXAdXdecQ0JQfEk0e",
   },
   {
     name: "1/4 Beef",
@@ -113,15 +121,16 @@ const products: Product[] = [
     category: "Beef",
     image: "/images/steaks1.webp",
     paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
+    pickupLink: "https://buy.stripe.com/fZu8wP7Hk06n9WA2RYfEk0f",
   },
   {
     name: "1/2 Beef",
     subtitle: "Half Share",
-    weight: "~160 - 220 lbs",
+    weight: "~160 lbs",
     price: "$2,999",
     deposit: "Full payment at checkout",
     description:
-      "Ideal for medium to large families. ~160 lbs shipped (boneless) / 180–220 lbs pickup (with bones & organs).",
+      "Ideal for medium to large families. Boneless cuts including steaks, roasts, and ground beef — shipped to your door.",
     freezerSpace: "7-10 cubic feet",
     shipping: "both",
     included: [
@@ -136,17 +145,24 @@ const products: Product[] = [
       "5 packages Beef for Stew (1 lb each)",
       "60–80 lbs Ground Beef (1 lb packages)",
     ],
-    includedPickup: [
-      "Primary cuts as steaks",
-      "Roasts",
-      "Ground Beef",
-      "Organs",
-      "Bones cut into small sections for soup and stock",
-    ],
     category: "Beef",
     image: "/images/meats.webp",
     paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
-    note: "Inquire about custom cuts for pickup.",
+    pickupLink: "https://buy.stripe.com/bJe3cvf9M4mD8Sw3W2fEk0g",
+    pickup: {
+      price: "$3,399",
+      weight: "180–220 lbs",
+      description:
+        "Ideal for medium to large families. Includes all boneless cuts plus bones and organs — picked up fresh at the farm.",
+      included: [
+        "All primary cuts as steaks",
+        "All roasts included",
+        "All ground beef",
+        "Organs included",
+        "Bones cut into small sections for soup and stock",
+      ],
+      note: "Inquire about custom cuts for pickup.",
+    },
   },
   {
     name: "Whole Beef",
@@ -187,7 +203,7 @@ const products: Product[] = [
     ],
     category: "Chicken",
     image: "/images/chicken.webp",
-    paymentLink: "https://buy.stripe.com/9B6bJ13r4bP55GkeAGfEk07",
+    paymentLink: "https://buy.stripe.com/00wcN5bXAdXdecQ0JQfEk0e",
   },
   // ── Lamb ──
   {
@@ -206,44 +222,239 @@ const products: Product[] = [
     ],
     category: "Lamb",
     image: "/images/lamb2.webp",
-    paymentLink: "https://buy.stripe.com/aFa9AT9Psg5lfgU3W2fEk0c",
+    paymentLink: "https://buy.stripe.com/aFacN56DgaL1ecQ8cifEk0h",
   },
 ];
 
-function PickupAccordion({ items }: { items: string[] }) {
-  const [open, setOpen] = useState(false);
+function ProductCard({ product, i }: { product: Product; i: number }) {
+  const hasToggle = !!product.pickupLink;
+  const [method, setMethod] = useState<"delivery" | "pickup">("delivery");
+
+  // Resolve displayed data based on selected method
+  const isPickup = method === "pickup" && product.pickup;
+  const displayPrice = isPickup ? product.pickup!.price : product.price;
+  const displayWeight = isPickup ? product.pickup!.weight : product.weight;
+  const displayNote = isPickup ? product.pickup!.note : product.note;
+  const activeLink = method === "pickup" && product.pickupLink ? product.pickupLink : product.paymentLink;
+  const isPlaceholder = activeLink === "#";
+
   return (
-    <div className="mt-3">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-2 px-3 rounded-lg bg-cream border border-golden/10 hover:border-golden/20 transition-colors"
-      >
-        <span className="text-charcoal font-bold text-[10px] uppercase tracking-wider">
-          Local Pickup — What&apos;s Included
-        </span>
-        <ChevronDown
-          className={`w-3.5 h-3.5 text-warm-brown/40 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+    <motion.div
+      key={product.name}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: i * 0.1 }}
+      className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-0.5 ${
+        product.popular
+          ? "border-2 border-[#D4A520] shadow-[0_12px_40px_rgba(212,165,32,0.15)] hover:shadow-[0_20px_50px_rgba(212,165,32,0.25)]"
+          : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_16px_45px_rgba(92,64,51,0.14)] hover:border-golden/20"
+      }`}
+    >
+      {/* Image */}
+      <div className="relative h-48 sm:h-36 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+          style={{ backgroundImage: `url('${product.image}')` }}
         />
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.ul
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden space-y-1.5 mt-2"
-          >
-            {items.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2">
-                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
-                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
-              </li>
-            ))}
-          </motion.ul>
+        <div className="absolute inset-0 bg-linear-to-t from-charcoal/30 to-transparent" />
+        {product.popular && (
+          <div className="absolute top-0 left-0 right-0 flex justify-center z-10">
+            <span className="bg-[#D4A520] text-white text-xs font-bold uppercase tracking-wide px-6 py-2 rounded-b-lg shadow-[0_8px_24px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+              ★ Most Popular
+            </span>
+          </div>
         )}
-      </AnimatePresence>
-    </div>
+      </div>
+
+      {/* Content */}
+      <div className="px-5 pt-4 pb-5 sm:pb-5 flex flex-col flex-1">
+        {/* Name */}
+        <h3 className="font-serif text-lg font-bold text-charcoal text-center">
+          {product.name}
+        </h3>
+        <p className="text-warm-brown/45 text-xs text-center mt-0.5 mb-3">
+          {product.subtitle} &bull; {displayWeight}
+        </p>
+
+        {/* Price */}
+        <div className="text-center mb-3">
+          <span className="font-serif text-3xl font-bold text-barn-red leading-none inline-block">
+            {displayPrice}
+          </span>
+          <p className="text-warm-brown/50 text-xs mt-1">
+            {product.deposit}
+          </p>
+        </div>
+
+        {/* Dynamic content — delivery always in flow (taller), pickup overlays */}
+        {product.pickup ? (
+          <div className="relative flex-1 mb-4">
+            {/* Delivery variant — ALWAYS in flow to define container height */}
+            <div className={`${method === "delivery" ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-150`}
+              aria-hidden={method !== "delivery"}
+            >
+              <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4">
+                {product.description}
+              </p>
+              <div className="space-y-2 mb-4">
+                <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
+                  <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                    <Snowflake className="w-3 h-3 text-barn-red/50" />
+                    <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">Freezer Space Needed</span>
+                  </div>
+                  <p className="text-charcoal font-bold text-xs">{product.freezerSpace}</p>
+                </div>
+              </div>
+              <div className="h-px bg-golden/10 mb-4" />
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <ul className="space-y-1.5">
+                {product.included.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                    <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Pickup variant — ALWAYS absolute so it never affects height */}
+            <div className={`absolute inset-0 ${method === "pickup" ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-150`}
+              aria-hidden={method !== "pickup"}
+            >
+              <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4">
+                {product.pickup.description}
+              </p>
+              <div className="space-y-2 mb-4">
+                <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
+                  <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                    <Snowflake className="w-3 h-3 text-barn-red/50" />
+                    <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">Freezer Space Needed</span>
+                  </div>
+                  <p className="text-charcoal font-bold text-xs">{product.freezerSpace}</p>
+                </div>
+              </div>
+              <div className="h-px bg-golden/10 mb-4" />
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <ul className="space-y-1.5">
+                {product.pickup.included.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                    <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4">
+              {product.description}
+            </p>
+            <div className="space-y-2 mb-4">
+              <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
+                <div className="flex items-center justify-center gap-1.5 mb-0.5">
+                  <Snowflake className="w-3 h-3 text-barn-red/50" />
+                  <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">Freezer Space Needed</span>
+                </div>
+                <p className="text-charcoal font-bold text-xs">{product.freezerSpace}</p>
+              </div>
+            </div>
+            <div className="h-px bg-golden/10 mb-4" />
+            <div className="mb-4 flex-1">
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <ul className="space-y-1.5">
+                {product.included.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
+                    <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
+
+        {/* Note — fixed height slot */}
+        <div className="h-5 mb-2 flex items-center justify-center">
+          {displayNote && (
+            <p className="text-barn-red text-[11px] font-semibold text-center italic">
+              {displayNote}
+            </p>
+          )}
+        </div>
+
+        {/* CTA — pinned to bottom */}
+        {hasToggle ? (
+          <div className="flex flex-col gap-1">
+            <div className="relative flex rounded-lg border border-golden/12 bg-cream-dark/25 p-0.75">
+              <div
+                className={`absolute top-0.75 bottom-0.75 w-[calc(50%-3px)] rounded-md transition-all duration-150 ease-out ${
+                  method === "pickup" ? "left-0.75" : "left-[calc(50%)]"
+                } bg-[#FFFDF8] shadow-[0_1px_4px_rgba(200,151,62,0.10),inset_0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-golden/18`}
+              />
+              <button
+                onClick={() => setMethod("pickup")}
+                className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-[11px] tracking-wide cursor-pointer transition-all duration-150 ${
+                  method === "pickup"
+                    ? "text-charcoal font-semibold"
+                    : "text-warm-brown/45 font-medium hover:text-warm-brown/65 hover:bg-white/50"
+                }`}
+              >
+                <MapPin className={`w-3 h-3 shrink-0 transition-all duration-150 ${method === "pickup" ? "text-golden" : "text-warm-brown/30"}`} />
+                Pickup
+              </button>
+              <button
+                onClick={() => setMethod("delivery")}
+                className={`relative z-10 flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-[11px] tracking-wide cursor-pointer transition-all duration-150 ${
+                  method === "delivery"
+                    ? "text-charcoal font-semibold"
+                    : "text-warm-brown/45 font-medium hover:text-warm-brown/65 hover:bg-white/50"
+                }`}
+              >
+                <Truck className={`w-3 h-3 shrink-0 transition-all duration-150 ${method === "delivery" ? "text-golden" : "text-warm-brown/30"}`} />
+                Delivery
+              </button>
+            </div>
+            <motion.a
+              href={activeLink}
+              target={isPlaceholder ? undefined : "_blank"}
+              rel={isPlaceholder ? undefined : "noopener noreferrer"}
+              whileHover={{ scale: 1.015, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-150 text-center block ${
+                product.popular
+                  ? "bg-[#D4A520] text-white hover:shadow-[0_8px_25px_rgba(212,165,32,0.4)]"
+                  : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)]"
+              }`}
+            >
+              Order Now
+            </motion.a>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-[#FFFDF8] border border-golden/18 shadow-[0_1px_4px_rgba(200,151,62,0.10),inset_0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-golden/18">
+              <MapPin className="w-3 h-3 text-golden shrink-0" />
+              <span className="text-charcoal text-[11px] font-semibold tracking-wide">
+                Local Pickup Only
+              </span>
+            </div>
+            <motion.a
+              href={product.paymentLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.015, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-150 text-center block ${
+                product.popular
+                  ? "bg-[#D4A520] text-white hover:shadow-[0_8px_25px_rgba(212,165,32,0.4)]"
+                  : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)]"
+              }`}
+            >
+              Order Now
+            </motion.a>
+          </div>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -392,153 +603,7 @@ export default function Products() {
               }`}
             >
               {filteredProducts.map((product, i) => (
-                <motion.div
-                  key={product.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
-                    product.popular
-                      ? "border-2 border-[#D4A520] shadow-[0_12px_40px_rgba(212,165,32,0.15)] hover:shadow-[0_20px_50px_rgba(212,165,32,0.2)]"
-                      : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_12px_40px_rgba(92,64,51,0.12)] hover:border-golden/20"
-                  }`}
-                >
-                  {/* Image */}
-                  <div className="relative h-48 sm:h-36 overflow-hidden">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url('${product.image}')` }}
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-charcoal/30 to-transparent" />
-                    {/* Popular Badge */}
-                    {product.popular && (
-                      <div className="absolute top-0 left-0 right-0 flex justify-center z-10">
-                        <span className="bg-[#D4A520] text-white text-xs font-bold uppercase tracking-wide px-6 py-2 rounded-b-lg shadow-[0_8px_24px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
-                          ★ Most Popular
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="px-5 pt-4 pb-5 sm:pb-5 flex flex-col flex-1">
-                    {/* Name */}
-                    <h3 className="font-serif text-lg font-bold text-charcoal text-center">
-                      {product.name}
-                    </h3>
-                    <p className="text-warm-brown/45 text-xs text-center mt-0.5 mb-3">
-                      {product.subtitle} &bull; {product.weight}
-                    </p>
-
-                    {/* Price + Deposit Block */}
-                    <div className="text-center mb-3">
-                      <span className="font-serif text-3xl font-bold text-barn-red leading-none">
-                        {product.price}
-                      </span>
-                      <p className="text-warm-brown/50 text-xs mt-1">
-                        {product.deposit}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-warm-brown/55 text-xs text-center leading-relaxed mb-4 min-h-16">
-                      {product.description}
-                    </p>
-
-                    {/* Freezer Space + Shipping */}
-                    <div className="space-y-2 mb-4">
-                      <div className="bg-cream rounded-lg px-3 py-2 text-center border border-golden/10">
-                        <div className="flex items-center justify-center gap-1.5 mb-0.5">
-                          <Snowflake className="w-3 h-3 text-barn-red/50" />
-                          <span className="text-warm-brown/45 text-[10px] uppercase tracking-wider font-medium">
-                            Freezer Space Needed
-                          </span>
-                        </div>
-                        <p className="text-charcoal font-bold text-xs">
-                          {product.freezerSpace}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center justify-center gap-1.5">
-                        {product.shipping === "shipping" || product.shipping === "both" ? (
-                          <>
-                            <Truck className="w-3 h-3 text-golden" />
-                            <span className="text-golden text-[11px] font-medium">
-                              Pickup or Shipped to Door
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <MapPin className="w-3 h-3 text-golden" />
-                            <span className="text-golden text-[11px] font-medium">
-                              Local Pickup Only
-                            </span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Divider */}
-                    <div className="h-px bg-golden/10 mb-4" />
-
-                    {/* What's Included */}
-                    <div className="mb-4 flex-1">
-                      {product.includedPickup ? (
-                        <>
-                          <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
-                            Shipped — What&apos;s Included:
-                          </h4>
-                          <ul className="space-y-1.5 mb-4">
-                            {product.included.map((item, idx) => (
-                              <li key={idx} className="flex items-start gap-2">
-                                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
-                                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <PickupAccordion items={product.includedPickup} />
-                        </>
-                      ) : (
-                        <>
-                          <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">
-                            What&apos;s Included:
-                          </h4>
-                          <ul className="space-y-1.5">
-                            {product.included.map((item, idx) => (
-                              <li key={idx} className="flex items-start gap-2">
-                                <Check className="w-3.5 h-3.5 text-barn-red mt-0.5 shrink-0" />
-                                <span className="text-warm-brown/70 text-xs leading-snug">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Note (custom cuts etc.) */}
-                    {product.note && (
-                      <p className="text-barn-red text-[11px] font-semibold text-center mb-3 italic">
-                        {product.note}
-                      </p>
-                    )}
-
-                    {/* CTA Button */}
-                    <motion.a
-                      href={product.paymentLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 text-center block ${
-                        product.popular
-                          ? "bg-[#D4A520] text-white hover:bg-[#C9990A] hover:shadow-[0_8px_25px_rgba(212,165,32,0.35)]"
-                          : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_6px_20px_rgba(139,46,46,0.25)]"
-                      }`}
-                    >
-                      Order Now
-                    </motion.a>
-                  </div>
-                </motion.div>
+                <ProductCard key={product.name} product={product} i={i} />
               ))}
             </motion.div>
           </AnimatePresence>
