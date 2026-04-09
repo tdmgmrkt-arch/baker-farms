@@ -565,7 +565,7 @@ export default function Products() {
                 <p className="text-warm-brown/70 text-sm leading-relaxed">
                   <Truck className="w-4 h-4 text-golden inline-block align-text-bottom mr-1.5" />
                   The Beef Box, 1/4, and 1/2 shares can be picked up locally or shipped{" "}
-                  <strong className="text-charcoal">(Southern California only)</strong>.
+                  <strong className="text-charcoal">(shipping calculated at checkout)</strong>.
                   Whole Beef is local pickup only in Winchester, CA.
                 </p>
               </div>
