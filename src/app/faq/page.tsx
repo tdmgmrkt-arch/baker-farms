@@ -84,17 +84,20 @@ export default function FAQPage() {
       <h3>Which products can be shipped?</h3>
       <p>
         The <strong>Beef Box</strong>, <strong>1/4 Beef</strong>, and{" "}
-        <strong>1/2 Beef</strong> are available for shipping within Southern
-        California. The 1/2 Beef is also available for local pickup. All other
-        products are local pickup only in Winchester, CA.
+        <strong>1/2 Beef</strong> are available for both shipping and local
+        pickup — you choose your preferred method at checkout. Shipping is
+        currently available within Southern California. All other products are
+        local pickup only in Winchester, CA.
       </p>
 
-      <h3>Why is the 1/2 Beef a different weight for shipping vs. pickup?</h3>
+      <h3>Why is the 1/2 Beef a different price and weight for shipping vs. pickup?</h3>
       <p>
-        Shipped 1/2 Beef orders are approximately <strong>160 lbs</strong> of
-        boneless cuts (steaks, roasts, ground beef). Local pickup orders are{" "}
+        Shipped 1/2 Beef orders (<strong>$2,999</strong>) are approximately{" "}
+        <strong>160 lbs</strong> of boneless cuts (steaks, roasts, ground beef).
+        Local pickup orders (<strong>$3,399</strong>) are{" "}
         <strong>180–220 lbs</strong> because they include bones and organs in
-        addition to all boneless cuts.
+        addition to all boneless cuts. The pickup option costs more because you
+        receive significantly more product.
       </p>
 
       <h3>How is meat shipped?</h3>

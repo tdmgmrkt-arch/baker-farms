@@ -483,10 +483,10 @@ export default function Products() {
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal mb-4 sm:mb-6">
             Premium Pasture-Raised Meats
           </h2>
-          <p className="text-warm-brown/70 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Fill your freezer with the finest grass-fed and finished meats from
-            Baker Farms in Winchester, CA. Every cut is vacuum-sealed, labeled,
-            and ready to enjoy.
+          <p className="text-warm-brown/70 text-base sm:text-lg max-w-[44rem] mx-auto leading-relaxed">
+          Fill your freezer with the finest Grass-Fed Black & Red Angus beef from 
+          Baker Farms in Winchester, CA. Every cut is vacuum-sealed, labeled,
+          and ready to enjoy.
           </p>
         </motion.div>
 

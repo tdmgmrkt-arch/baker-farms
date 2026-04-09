@@ -34,9 +34,10 @@ export default function ShippingPage() {
       <h3>Shipping — Select Products</h3>
       <p>
         The <strong>Beef Box (1/8 Beef)</strong>, <strong>1/4 Beef</strong>,
-        and <strong>1/2 Beef</strong> shares are available for shipping. We ship
-        using insulated packaging with dry ice to ensure your meat stays frozen
-        during transit.
+        and <strong>1/2 Beef</strong> shares are available for shipping. These
+        three products can also be picked up locally — you choose your
+        preferred method at checkout. We ship using insulated packaging with
+        dry ice to ensure your meat stays frozen during transit.
       </p>
       <ul>
         <li>Orders are shipped Monday–Wednesday to avoid weekend delays</li>
@@ -52,18 +53,22 @@ export default function ShippingPage() {
       <h3>1/2 Beef — Shipped vs. Pickup</h3>
       <p>
         The 1/2 Beef share is available for both shipping and local pickup.
-        Please note the weight difference:
+        Please note the differences:
       </p>
       <ul>
         <li>
-          <strong>Shipped:</strong> ~160 lbs of boneless cuts (steaks, roasts,
-          ground beef)
+          <strong>Shipped ($2,999):</strong> ~160 lbs of boneless cuts (steaks,
+          roasts, ground beef)
         </li>
         <li>
-          <strong>Local Pickup:</strong> 180–220 lbs, which includes bones and
-          organs in addition to all boneless cuts
+          <strong>Local Pickup ($3,399):</strong> 180–220 lbs, which includes
+          bones and organs in addition to all boneless cuts
         </li>
       </ul>
+      <p>
+        The pickup option is priced higher because it includes significantly
+        more product (bones, organs, and additional weight).
+      </p>
 
       <h2>Pickup-Only Products</h2>
       <p>
