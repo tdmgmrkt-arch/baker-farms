@@ -148,7 +148,7 @@ const products: Product[] = [
     category: "Beef",
     image: "/images/meats.webp",
     paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
-    pickupLink: "https://buy.stripe.com/bJe3cvf9M4mD8Sw3W2fEk0g",
+    pickupLink: "https://buy.stripe.com/eVq14n4v8g5l0m064afEk0i",
     pickup: {
       price: "$3,399",
       weight: "180–220 lbs",
