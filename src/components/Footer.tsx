@@ -11,7 +11,11 @@ import {
   CreditCard,
   Lock,
   ChevronDown,
+  Check,
 } from "lucide-react";
+
+const NEWSLETTER_WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/8PXEY7myv9cbSDi286cX/webhook-trigger/e1a602fc-d6b5-4dcc-99ee-193decd94a10";
 
 const navigation = [
   { label: "Home", href: "/" },
@@ -106,6 +110,29 @@ function FooterAccordion({
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("submitting");
+    try {
+      const res = await fetch(NEWSLETTER_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "Baker Farms Newsletter Signup",
+          email,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+      if (!res.ok) throw new Error("Webhook failed");
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <motion.footer
@@ -193,35 +220,51 @@ export default function Footer() {
               Get first access to seasonal offerings, exclusive farm updates,
               and members-only pricing.
             </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setEmail("");
-              }}
-              className="flex flex-col sm:flex-row gap-2"
-            >
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
               <div className="relative flex-1">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full bg-white/6 backdrop-blur-lg border border-white/12 rounded-xl px-4 py-3.5 sm:py-3 text-white text-sm focus:outline-none focus:border-golden/50 focus:bg-white/10 transition-all placeholder:text-white/30"
+                  required
+                  disabled={status === "submitting" || status === "success"}
+                  className="w-full bg-white/6 backdrop-blur-lg border border-white/12 rounded-xl px-4 py-3.5 sm:py-3 text-white text-sm focus:outline-none focus:border-golden/50 focus:bg-white/10 transition-all placeholder:text-white/30 disabled:opacity-60"
                 />
               </div>
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-barn-red text-white w-full sm:w-auto px-5 py-3.5 sm:py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)] flex items-center justify-center gap-2 shrink-0"
+                disabled={status === "submitting" || status === "success"}
+                whileHover={status === "idle" ? { scale: 1.02 } : {}}
+                whileTap={status === "idle" ? { scale: 0.98 } : {}}
+                className="bg-barn-red text-white w-full sm:w-auto px-5 py-3.5 sm:py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)] flex items-center justify-center gap-2 shrink-0 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Subscribe
-                <ArrowRight className="w-3.5 h-3.5" />
+                {status === "submitting" ? (
+                  "Subscribing..."
+                ) : status === "success" ? (
+                  <>
+                    Subscribed <Check className="w-3.5 h-3.5" />
+                  </>
+                ) : (
+                  <>
+                    Subscribe <ArrowRight className="w-3.5 h-3.5" />
+                  </>
+                )}
               </motion.button>
             </form>
-            <p className="text-white/25 text-xs mt-3">
-              No spam, ever. Unsubscribe anytime.
-            </p>
+            {status === "success" ? (
+              <p className="text-golden-light/80 text-xs mt-3">
+                Thanks for subscribing!
+              </p>
+            ) : status === "error" ? (
+              <p className="text-white/60 text-xs mt-3">
+                Something went wrong. Please try again.
+              </p>
+            ) : (
+              <p className="text-white/25 text-xs mt-3">
+                No spam, ever. Unsubscribe anytime.
+              </p>
+            )}
           </motion.div>
         </div>
 

@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, Check } from "lucide-react";
 import {
   FloatingInput,
   FloatingTextarea,
   FloatingSelect,
 } from "./FloatingInput";
+
+const WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/8PXEY7myv9cbSDi286cX/webhook-trigger/e1a602fc-d6b5-4dcc-99ee-193decd94a10";
 
 const interestOptions = [
   { value: "beef", label: "Beef Shares" },
@@ -37,6 +41,36 @@ const contactDetails = [
 ];
 
 export default function CTA() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      source: "Baker Farms Contact Form",
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      interest: formData.get("interest"),
+      message: formData.get("message"),
+      submittedAt: new Date().toISOString(),
+    };
+    setStatus("submitting");
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Webhook failed");
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="order" className="py-14 sm:py-20 lg:py-28 bg-cream-dark/30">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
@@ -115,33 +149,56 @@ export default function CTA() {
                   Fill out the form and we&apos;ll be in touch soon.
                 </p>
 
-                <form
-                  className="space-y-4"
-                  onSubmit={(e) => e.preventDefault()}
-                >
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FloatingInput label="First Name" />
-                    <FloatingInput label="Last Name" />
+                    <FloatingInput label="First Name" name="firstName" required />
+                    <FloatingInput label="Last Name" name="lastName" required />
                   </div>
-                  <FloatingInput label="Email Address" type="email" />
+                  <FloatingInput label="Email Address" type="email" name="email" required />
                   <FloatingSelect
                     label="What are you interested in?"
                     options={interestOptions}
+                    name="interest"
                   />
                   <FloatingTextarea
                     label="Tell us about your order..."
                     rows={4}
+                    name="message"
                   />
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center gap-2.5 bg-white text-barn-red px-8 py-4 rounded-full text-base font-bold tracking-wider uppercase transition-all duration-300 hover:bg-cream hover:shadow-[0_12px_35px_rgba(0,0,0,0.15)] mt-6"
+                    disabled={status === "submitting" || status === "success"}
+                    whileHover={status === "idle" ? { scale: 1.02 } : {}}
+                    whileTap={status === "idle" ? { scale: 0.98 } : {}}
+                    className="w-full flex items-center justify-center gap-2.5 bg-white text-barn-red px-8 py-4 rounded-full text-base font-bold tracking-wider uppercase transition-all duration-300 hover:bg-cream hover:shadow-[0_12px_35px_rgba(0,0,0,0.15)] mt-6 disabled:opacity-80 disabled:cursor-not-allowed"
                   >
-                    Send Inquiry
-                    <ArrowRight className="w-4 h-4" />
+                    {status === "submitting" ? (
+                      "Sending..."
+                    ) : status === "success" ? (
+                      <>
+                        Message Sent <Check className="w-4 h-4" />
+                      </>
+                    ) : (
+                      <>
+                        Send Inquiry <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
                   </motion.button>
+
+                  {status === "success" && (
+                    <p className="text-white/80 text-xs text-center mt-3">
+                      Thanks! We&apos;ll be in touch within 24 hours.
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="text-white text-xs text-center mt-3 bg-black/30 rounded-lg py-2 px-3">
+                      Something went wrong. Please email us at{" "}
+                      <a href="mailto:bakermeatco@gmail.com" className="underline">
+                        bakermeatco@gmail.com
+                      </a>.
+                    </p>
+                  )}
                 </form>
               </div>
             </div>

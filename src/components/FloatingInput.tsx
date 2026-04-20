@@ -6,12 +6,16 @@ interface FloatingInputProps {
   label: string;
   type?: string;
   className?: string;
+  name?: string;
+  required?: boolean;
 }
 
 export function FloatingInput({
   label,
   type = "text",
   className = "",
+  name,
+  required,
 }: FloatingInputProps) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
@@ -23,6 +27,8 @@ export function FloatingInput({
       <input
         id={id}
         type={type}
+        name={name}
+        required={required}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onFocus={() => setFocused(true)}
@@ -47,10 +53,14 @@ export function FloatingTextarea({
   label,
   rows = 4,
   className = "",
+  name,
+  required,
 }: {
   label: string;
   rows?: number;
   className?: string;
+  name?: string;
+  required?: boolean;
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
@@ -61,6 +71,8 @@ export function FloatingTextarea({
     <div className={`relative ${className}`}>
       <textarea
         id={id}
+        name={name}
+        required={required}
         rows={rows}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -86,10 +98,14 @@ export function FloatingSelect({
   label,
   options,
   className = "",
+  name,
+  required,
 }: {
   label: string;
   options: { value: string; label: string }[];
   className?: string;
+  name?: string;
+  required?: boolean;
 }) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
@@ -100,6 +116,8 @@ export function FloatingSelect({
     <div className={`relative ${className}`}>
       <select
         id={id}
+        name={name}
+        required={required}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onFocus={() => setFocused(true)}
