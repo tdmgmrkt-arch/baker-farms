@@ -37,8 +37,8 @@ const categories: { label: Category; icon: LucideIcon | typeof LambIcon | typeof
 const categoryDescriptions: Record<Category, string | null> = {
   Beef: null,
   Chicken:
-    'Humanely raised premium all-natural chicken — no hormones, antibiotics, soy or corn. All cuts are vacuum-sealed and labeled. <strong>Local pickup only.</strong>',
-  Lamb: 'Humanely raised with no hormones, antibiotics, soy or corn. All cuts are vacuum-sealed and labeled. <strong>Local pickup only.</strong>',
+    'Humanely raised premium all-natural chicken — no hormones, antibiotics, soy or corn. Local pickup only.',
+  Lamb: 'seasonal',
   Pork: 'seasonal',
   Turkey: 'seasonal',
 };
@@ -53,6 +53,7 @@ interface Product {
   freezerSpace: string;
   shipping: "shipping" | "pickup" | "both";
   popular?: boolean;
+  butchersChoice?: boolean;
   included: string[];
   category: Category;
   image: string;
@@ -72,12 +73,34 @@ const products: Product[] = [
   // ── Beef ──
   {
     name: "The Beef Box",
-    subtitle: "1/8 Beef",
+    subtitle: "Monthly Share",
+    weight: "20 lbs",
+    price: "$299",
+    deposit: "Full payment at checkout",
+    description:
+      "Your monthly supply of premium beef — balanced cuts, easy storage, no bulk commitment.",
+    freezerSpace: "~1 cubic foot",
+    shipping: "shipping",
+    butchersChoice: true,
+    included: [
+      "Ground Beef",
+      "Butcher's choice steaks (filet, ribeye, New York, sirloin, or carne asada)",
+      "20 lbs total",
+    ],
+    category: "Beef",
+    image: "/images/steak2.webp",
+    paymentLink: "https://buy.stripe.com/bJe00j7Hk8CTfgU506fEk0j",
+    pickupLink: "https://buy.stripe.com/dRm00j9Ps4mDd8M78efEk0k",
+    note: "Each box is a curated selection of premium cuts. Items may vary based on availability.",
+  },
+  {
+    name: "1/8 Beef",
+    subtitle: "Eighth Share",
     weight: "~40 lbs",
     price: "$825",
     deposit: "Full payment at checkout",
     description:
-      "Perfect for first time buyers or people who want monthly pasture raised beef without the big freezer commitment.",
+      "Perfect for anyone wanting premium pasture-raised beef without the major freezer commitment.",
     freezerSpace: "1-2 cubic feet",
     shipping: "shipping",
     included: [
@@ -120,7 +143,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steaks1.webp",
-    paymentLink: "https://buy.stripe.com/4gM00j6DgaL19WAgIOfEk0a",
+    paymentLink: "https://buy.stripe.com/dRmcN58LoaL1fgUcsyfEk09",
     pickupLink: "https://buy.stripe.com/fZu8wP7Hk06n9WA2RYfEk0f",
   },
   {
@@ -130,20 +153,17 @@ const products: Product[] = [
     price: "$2,999",
     deposit: "Full payment at checkout",
     description:
-      "Ideal for medium to large families. Boneless cuts including steaks, roasts, and ground beef — shipped to your door.",
+      "Ideal for medium to large families who want high-quality beef, save over time, and always have premium cuts on hand.",
     freezerSpace: "7-10 cubic feet",
     shipping: "both",
     included: [
-      "6 packages Cube Steak or 5 packages Carne Asada",
-      "Sirloin Steaks (5 packages, 2 per package)",
-      "Ribeye Steaks (5 packages, 2 per package)",
-      "New York Strip Steaks (5 packages, 2 per package)",
-      "Filet Steaks (3 packages, 2 per package)",
-      "1 Rump Roast",
-      "6 Chuck Roasts",
-      "2 Sirloin Tip Roasts",
-      "5 packages Beef for Stew (1 lb each)",
-      "60–80 lbs Ground Beef (1 lb packages)",
+      "Steaks",
+      "Roasts",
+      "Ground Beef",
+      "Stew Meat",
+      "Short Ribs",
+      "Brisket",
+      "Fat",
     ],
     category: "Beef",
     image: "/images/meats.webp",
@@ -151,15 +171,19 @@ const products: Product[] = [
     pickupLink: "https://buy.stripe.com/eVq14n4v8g5l0m064afEk0i",
     pickup: {
       price: "$3,399",
-      weight: "180–220 lbs",
+      weight: "200–250 lbs",
       description:
-        "Ideal for medium to large families. Includes all boneless cuts plus bones and organs — picked up fresh at the farm.",
+        "Ideal for medium to large families. Includes all boneless cuts plus bones and organs — fresh from the farm.",
       included: [
-        "All primary cuts as steaks",
-        "All roasts included",
-        "All ground beef",
-        "Organs included",
-        "Bones cut into small sections for soup and stock",
+        "Steaks",
+        "Roasts",
+        "Ground Beef",
+        "Stew Meat",
+        "Short Ribs",
+        "Brisket",
+        "Organs",
+        "Bones",
+        "Fat",
       ],
       note: "Inquire about custom cuts for pickup.",
     },
@@ -167,19 +191,23 @@ const products: Product[] = [
   {
     name: "Whole Beef",
     subtitle: "Full Share",
-    weight: "360–400 lbs",
-    price: "$5,999",
+    weight: "400–500 lbs",
+    price: "$6,799",
     deposit: "Full payment at checkout",
     description:
-      "Best value for group splits or long-term freezer stocking. Splitting allows you to get even more meat for the money.",
+      "Our best value per pound. Excellent for group splits or families looking to fully stock the freezer with a full variety.",
     freezerSpace: "14-20 cubic feet",
     shipping: "pickup",
     included: [
-      "All primary cuts as steaks",
-      "All roasts included",
-      "All ground beef",
-      "Organs included",
-      "Bones cut into small sections for soup and stock",
+      "Steaks",
+      "Roasts",
+      "Ground Beef",
+      "Stew Meat",
+      "Short Ribs",
+      "Brisket",
+      "Organs",
+      "Bones",
+      "Fat",
     ],
     category: "Beef",
     image: "/images/steaks4.webp",
@@ -190,11 +218,29 @@ const products: Product[] = [
   {
     name: "The Bird Box",
     subtitle: "Premium Chicken",
+    weight: "~20 lbs",
+    price: "$125",
+    deposit: "Full payment at checkout",
+    description:
+      "Perfect for people who want monthly chicken without the major freezer commitment. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
+    freezerSpace: "~1 cubic foot",
+    shipping: "pickup",
+    included: [
+      "10 lbs Boneless Skinless Chicken Thighs",
+      "10 lbs Boneless Skinless Chicken Breasts",
+    ],
+    category: "Chicken",
+    image: "/images/chicken.webp",
+    paymentLink: "https://buy.stripe.com/14A5kD3r44mD7OsgIOfEk0l",
+  },
+  {
+    name: "The Big Bird Box",
+    subtitle: "Premium Chicken",
     weight: "~40 lbs",
     price: "$199",
     deposit: "Full payment at checkout",
     description:
-      "Perfect for people who want monthly chicken without the big freezer commitment. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
+      "Perfect for people stocking up on quality chicken for the whole family. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
     freezerSpace: "1-2 cubic feet",
     shipping: "pickup",
     included: [
@@ -203,30 +249,30 @@ const products: Product[] = [
     ],
     category: "Chicken",
     image: "/images/chicken.webp",
-    paymentLink: "https://buy.stripe.com/00wcN5bXAdXdecQ0JQfEk0e",
+    paymentLink: "https://buy.stripe.com/fZu00je5I6uL2u8gIOfEk0d",
   },
-  // ── Lamb ──
-  {
-    name: "Ground Lamb",
-    subtitle: "Premium Ground",
-    weight: "~20 lbs",
-    price: "$199",
-    deposit: "Full payment at checkout",
-    description:
-      "Premium pasture-raised ground lamb, perfect for burgers, meatballs, kebabs, and more. Vacuum-sealed in convenient packages.",
-    freezerSpace: "~1 cubic foot",
-    shipping: "pickup",
-    included: [
-      "Approx. 20 lbs Ground Lamb",
-      "Vacuum-sealed & labeled",
-    ],
-    category: "Lamb",
-    image: "/images/lamb2.webp",
-    paymentLink: "https://buy.stripe.com/aFacN56DgaL1ecQ8cifEk0h",
-  },
+  // ── Lamb — currently seasonal, keep data on deck in case we re-list ──
+  // {
+  //   name: "Ground Lamb",
+  //   subtitle: "Premium Ground",
+  //   weight: "~20 lbs",
+  //   price: "$199",
+  //   deposit: "Full payment at checkout",
+  //   description:
+  //     "Premium pasture-raised ground lamb, perfect for burgers, meatballs, kebabs, and more. Vacuum-sealed in convenient packages.",
+  //   freezerSpace: "~1 cubic foot",
+  //   shipping: "pickup",
+  //   included: [
+  //     "Approx. 20 lbs Ground Lamb",
+  //     "Vacuum-sealed & labeled",
+  //   ],
+  //   category: "Lamb",
+  //   image: "/images/lamb2.webp",
+  //   paymentLink: "https://buy.stripe.com/aFacN56DgaL1ecQ8cifEk0h",
+  // },
 ];
 
-function ProductCard({ product, i }: { product: Product; i: number }) {
+function ProductCard({ product }: { product: Product }) {
   const hasToggle = !!product.pickupLink;
   const [method, setMethod] = useState<"delivery" | "pickup">("delivery");
 
@@ -243,10 +289,12 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
       key={product.name}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: i * 0.1 }}
+      transition={{ duration: 0.4 }}
       className={`group relative flex flex-col bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-0.5 ${
         product.popular
           ? "border-2 border-[#D4A520] shadow-[0_12px_40px_rgba(212,165,32,0.15)] hover:shadow-[0_20px_50px_rgba(212,165,32,0.25)]"
+          : product.butchersChoice
+          ? "border-2 border-barn-red shadow-[0_12px_40px_rgba(139,46,46,0.15)] hover:shadow-[0_20px_50px_rgba(139,46,46,0.25)]"
           : "border border-golden/10 shadow-[0_4px_25px_rgba(92,64,51,0.06)] hover:shadow-[0_16px_45px_rgba(92,64,51,0.14)] hover:border-golden/20"
       }`}
     >
@@ -261,6 +309,13 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
           <div className="absolute top-0 left-0 right-0 flex justify-center z-10">
             <span className="bg-[#D4A520] text-white text-xs font-bold uppercase tracking-wide px-6 py-2 rounded-b-lg shadow-[0_8px_24px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
               ★ Most Popular
+            </span>
+          </div>
+        )}
+        {product.butchersChoice && (
+          <div className="absolute top-0 left-0 right-0 flex justify-center z-10">
+            <span className="bg-barn-red text-white text-xs font-bold uppercase tracking-wide px-6 py-2 rounded-b-lg shadow-[0_8px_24px_rgba(0,0,0,0.35)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+              ✦ Butcher&apos;s Choice
             </span>
           </div>
         )}
@@ -288,7 +343,7 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
 
         {/* Dynamic content — delivery always in flow (taller), pickup overlays */}
         {product.pickup ? (
-          <div className="relative flex-1 mb-4">
+          <div className="relative flex-1 mb-4 min-h-72">
             {/* Delivery variant — ALWAYS in flow to define container height */}
             <div className={`${method === "delivery" ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-150`}
               aria-hidden={method !== "delivery"}
@@ -359,7 +414,7 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
               </div>
             </div>
             <div className="h-px bg-golden/10 mb-4" />
-            <div className="mb-4 flex-1">
+            <div className="mb-4 flex-1 min-h-72">
               <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
               <ul className="space-y-1.5">
                 {product.included.map((item, idx) => (
@@ -373,10 +428,10 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
           </>
         )}
 
-        {/* Note — fixed height slot */}
-        <div className="h-5 mb-2 flex items-center justify-center">
+        {/* Note */}
+        <div className="min-h-5 mb-3 flex items-center justify-center">
           {displayNote && (
-            <p className="text-barn-red text-[11px] font-semibold text-center italic">
+            <p className="text-barn-red text-[11px] font-semibold text-center italic leading-snug">
               {displayNote}
             </p>
           )}
@@ -423,6 +478,8 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
               className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-150 text-center block ${
                 product.popular
                   ? "bg-[#D4A520] text-white hover:shadow-[0_8px_25px_rgba(212,165,32,0.4)]"
+                  : product.butchersChoice
+                  ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.4)]"
                   : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)]"
               }`}
             >
@@ -446,6 +503,8 @@ function ProductCard({ product, i }: { product: Product; i: number }) {
               className={`w-full py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-150 text-center block ${
                 product.popular
                   ? "bg-[#D4A520] text-white hover:shadow-[0_8px_25px_rgba(212,165,32,0.4)]"
+                  : product.butchersChoice
+                  ? "bg-barn-red text-white hover:bg-barn-red-dark hover:shadow-[0_8px_25px_rgba(139,46,46,0.4)]"
                   : "bg-charcoal text-white hover:bg-barn-red hover:shadow-[0_8px_25px_rgba(139,46,46,0.3)]"
               }`}
             >
@@ -468,7 +527,7 @@ export default function Products() {
 
   return (
     <section id="products" className="py-12 sm:py-16 lg:py-20 bg-cream">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-384 px-4 sm:px-6 lg:px-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -484,9 +543,26 @@ export default function Products() {
             Premium Pasture-Raised Meats
           </h2>
           <p className="text-warm-brown/70 text-base sm:text-lg max-w-[44rem] mx-auto leading-relaxed">
-          Fill your freezer with the finest Grass-Fed Black & Red Angus beef from 
-          Baker Farms in Winchester, CA. Every cut is vacuum-sealed, labeled,
-          and ready to enjoy.
+            Fill your freezer with the finest{" "}
+            <motion.span
+              key={activeCategory}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
+              className="font-semibold text-charcoal"
+            >
+              {activeCategory === "Beef"
+                ? "Grass-Fed Black & Red Angus Beef"
+                : activeCategory === "Chicken"
+                ? "Premium All-Natural Chicken"
+                : activeCategory === "Lamb"
+                ? "Pasture-Raised Lamb"
+                : activeCategory === "Pork"
+                ? "Pasture-Raised Pork"
+                : "Pasture-Raised Turkey"}
+            </motion.span>{" "}
+            from Baker Farms in Winchester, CA. Every cut is vacuum-sealed,
+            labeled, and ready to enjoy.
           </p>
         </motion.div>
 
@@ -518,29 +594,41 @@ export default function Products() {
           </div>
         </motion.div>
 
-        {/* Category Description (Chicken & Lamb) */}
+        {/* Tab-specific banner (Beef note, Chicken desc) — unified for smooth crossfade */}
         <AnimatePresence mode="wait">
-          {description && !isSeasonal && (
+          {activeCategory === "Beef" ? (
             <motion.p
-              key={activeCategory + "-desc"}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="text-center text-warm-brown/70 text-base max-w-2xl mx-auto mb-12 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: description }}
+              key="beef-banner"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-center text-barn-red font-semibold text-sm mb-8"
+            >
+              Ask about our Custom Beef Boxes — tailored to your family&apos;s needs.
+            </motion.p>
+          ) : activeCategory === "Chicken" ? (
+            <motion.p
+              key="chicken-banner"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-center text-barn-red font-semibold text-sm mb-8 whitespace-nowrap"
+              dangerouslySetInnerHTML={{ __html: description ?? "" }}
             />
-          )}
+          ) : null}
         </AnimatePresence>
 
-        {/* Seasonal Message (Pork & Turkey) */}
+        {/* Main content — grid or seasonal, unified AnimatePresence */}
+        <div className="min-h-212.5">
         <AnimatePresence mode="wait">
-          {isSeasonal && (
+          {isSeasonal ? (
             <motion.div
               key={activeCategory + "-seasonal"}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               className="max-w-lg mx-auto text-center py-16"
             >
@@ -548,7 +636,11 @@ export default function Products() {
                 {activeCategory === "Pork" ? (
                   <Ham className="w-9 h-9 text-barn-red" />
                 ) : (
-                  <TurkeyIcon className="w-9 h-9 text-barn-red" />
+                  activeCategory === "Turkey" ? (
+                    <TurkeyIcon className="w-9 h-9 text-barn-red" />
+                  ) : (
+                    <LambIcon className="w-9 h-9 text-barn-red" />
+                  )
                 )}
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-4">
@@ -566,48 +658,30 @@ export default function Products() {
                 Contact Us to Inquire
               </a>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Beef Section Note */}
-        <AnimatePresence mode="wait">
-          {activeCategory === "Beef" && (
-            <motion.p
-              key="beef-custom-note"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="text-center text-barn-red font-semibold text-sm mb-8"
-            >
-              Ask about our Custom Beef Boxes — tailored to your family&apos;s needs.
-            </motion.p>
-          )}
-        </AnimatePresence>
-
-        {/* Product Cards Grid */}
-        {!isSeasonal && (
-          <AnimatePresence mode="wait">
+          ) : (
             <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              key={activeCategory + "-grid"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               className={`grid gap-5 ${
                 filteredProducts.length === 1
                   ? "grid-cols-1 max-w-sm mx-auto"
                   : filteredProducts.length === 2
                   ? "grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto"
+                  : filteredProducts.length >= 5
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
                   : "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
               }`}
             >
-              {filteredProducts.map((product, i) => (
-                <ProductCard key={product.name} product={product} i={i} />
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.name} product={product} />
               ))}
             </motion.div>
-          </AnimatePresence>
-        )}
+          )}
+        </AnimatePresence>
+        </div>
 
         {/* Disclaimer */}
         {!isSeasonal && (
@@ -629,7 +703,7 @@ export default function Products() {
               <div className="bg-white border border-golden/20 rounded-xl px-5 py-3.5 shadow-[0_2px_12px_rgba(92,64,51,0.06)] text-center">
                 <p className="text-warm-brown/70 text-sm leading-relaxed">
                   <Truck className="w-4 h-4 text-golden inline-block align-text-bottom mr-1.5" />
-                  The Beef Box, 1/4, and 1/2 shares can be picked up locally or shipped{" "}
+                  The 1/8, 1/4, and 1/2 Beef shares can be picked up locally or shipped{" "}
                   <strong className="text-charcoal">(shipping calculated at checkout)</strong>.
                   Whole Beef is local pickup only in Winchester, CA.
                 </p>

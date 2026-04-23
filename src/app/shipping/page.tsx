@@ -33,11 +33,12 @@ export default function ShippingPage() {
 
       <h3>Shipping — Select Products</h3>
       <p>
-        The <strong>Beef Box (1/8 Beef)</strong>, <strong>1/4 Beef</strong>,
-        and <strong>1/2 Beef</strong> shares are available for shipping. These
-        three products can also be picked up locally — you choose your
-        preferred method at checkout. We ship using insulated packaging with
-        dry ice to ensure your meat stays frozen during transit.
+        The <strong>The Beef Box</strong> (20 lb monthly share),{" "}
+        <strong>1/8 Beef</strong>, <strong>1/4 Beef</strong>, and{" "}
+        <strong>1/2 Beef</strong> shares are available for shipping. These
+        products can also be picked up locally — you choose your preferred
+        method at checkout. We ship using insulated packaging with dry ice to
+        ensure your meat stays frozen during transit.
       </p>
       <ul>
         <li>Orders are shipped Monday–Wednesday to avoid weekend delays</li>
@@ -61,7 +62,7 @@ export default function ShippingPage() {
           roasts, ground beef)
         </li>
         <li>
-          <strong>Local Pickup ($3,399):</strong> 180–220 lbs, which includes
+          <strong>Local Pickup ($3,399):</strong> 200–250 lbs, which includes
           bones and organs in addition to all boneless cuts
         </li>
       </ul>
@@ -77,12 +78,13 @@ export default function ShippingPage() {
       </p>
       <ul>
         <li>Whole Beef</li>
-        <li>The Bird Box (Chicken)</li>
-        <li>Ground Lamb</li>
+        <li>The Bird Box (Chicken — ~20 lbs)</li>
+        <li>The Big Bird Box (Chicken — ~40 lbs)</li>
       </ul>
       <p>
-        Seasonal <strong>Pork</strong> and <strong>Turkey</strong> are also
-        available for local pickup only when in season.
+        Seasonal <strong>Lamb</strong>, <strong>Pork</strong>, and{" "}
+        <strong>Turkey</strong> are also available for local pickup only when
+        in season.
       </p>
 
       <h2>Processing & Lead Times</h2>
