@@ -52,6 +52,7 @@ export default function CTA() {
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
       email: formData.get("email"),
+      phone: formData.get("phone"),
       interest: formData.get("interest"),
       message: formData.get("message"),
       submittedAt: new Date().toISOString(),
@@ -155,6 +156,7 @@ export default function CTA() {
                     <FloatingInput label="Last Name" name="lastName" required />
                   </div>
                   <FloatingInput label="Email Address" type="email" name="email" required />
+                  <FloatingInput label="Phone Number" type="tel" name="phone" />
                   <FloatingSelect
                     label="What are you interested in?"
                     options={interestOptions}
