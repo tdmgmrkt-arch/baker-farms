@@ -27,9 +27,9 @@ export default function Hero() {
         {/* Strong gradient for typography legibility — centered on mobile, left-biased on desktop */}
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent sm:bg-linear-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
         {/* Bottom-to-top vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-charcoal/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-charcoal/70 via-transparent to-charcoal/20" />
         {/* Warm golden tint */}
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-br from-amber-900/20 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -82,7 +82,7 @@ export default function Hero() {
                 href="#products"
                 className="group inline-flex items-center justify-center gap-2.5 sm:gap-3 bg-barn-red text-white px-7 py-3.5 sm:px-9 sm:py-4 rounded-full text-[0.938rem] sm:text-base font-semibold tracking-wide transition-all duration-300 hover:bg-barn-red-dark hover:shadow-[0_12px_40px_rgba(139,46,46,0.4)] active:translate-y-0 w-full sm:w-auto"
               >
-                Shop Meat Shares
+                Shop Premium Meats
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>

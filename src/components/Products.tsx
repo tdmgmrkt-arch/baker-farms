@@ -364,7 +364,7 @@ function ProductCard({ product }: { product: Product }) {
                 </div>
               </div>
               <div className="h-px bg-golden/10 mb-4" />
-              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included (approximate):</h4>
               <ul className="space-y-1.5">
                 {product.included.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
@@ -391,7 +391,7 @@ function ProductCard({ product }: { product: Product }) {
                 </div>
               </div>
               <div className="h-px bg-golden/10 mb-4" />
-              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included (approximate):</h4>
               <ul className="space-y-1.5">
                 {product.pickup.included.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
@@ -418,7 +418,7 @@ function ProductCard({ product }: { product: Product }) {
             </div>
             <div className="h-px bg-golden/10 mb-4" />
             <div className="mb-4 flex-1 min-h-72">
-              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included:</h4>
+              <h4 className="text-charcoal font-bold text-[10px] uppercase tracking-wider mb-2">What&apos;s Included (approximate):</h4>
               <ul className="space-y-1.5">
                 {product.included.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
