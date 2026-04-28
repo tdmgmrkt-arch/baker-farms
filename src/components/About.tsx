@@ -34,7 +34,7 @@ export default function About() {
                 <div
                   className="h-36 lg:h-44 rounded-3xl bg-cover bg-center shadow-[0_8px_30px_rgba(92,64,51,0.12)]"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=600&auto=format&fit=crop')`,
+                    backgroundImage: `url('/images/bfpic.webp')`,
                   }}
                 />
               </div>

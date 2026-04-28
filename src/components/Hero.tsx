@@ -20,7 +20,7 @@ export default function Hero() {
         <motion.div
           className="absolute inset-0 bg-cover bg-top sm:bg-center bg-no-repeat scale-105 will-change-transform"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop')`,
+            backgroundImage: `url('/images/bakermeatshero.webp')`,
             y: bgY,
           }}
         />
