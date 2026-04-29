@@ -78,9 +78,9 @@ const products: Product[] = [
     price: "$429",
     deposit: "Full payment at checkout",
     description:
-      "Your monthly supply of premium beef — balanced cuts, easy storage, no bulk commitment.",
+      "Your go-to supply of premium beef — balanced cuts, easy storage, and no bulk commitment.",
     freezerSpace: "~1 cubic foot",
-    shipping: "shipping",
+    shipping: "pickup",
     butchersChoice: true,
     included: [
       "Ground Beef",
@@ -89,8 +89,7 @@ const products: Product[] = [
     ],
     category: "Beef",
     image: "/images/steak2.webp",
-    paymentLink: "https://buy.stripe.com/bJe00j7Hk8CTfgU506fEk0j",
-    pickupLink: "https://buy.stripe.com/dRm00j9Ps4mDd8M78efEk0k",
+    paymentLink: "https://buy.stripe.com/dRm00j9Ps4mDd8M78efEk0k",
     note: "Each box is a curated selection of premium cuts. Items may vary based on availability.",
   },
   {
@@ -100,7 +99,7 @@ const products: Product[] = [
     price: "$825",
     deposit: "Full payment at checkout",
     description:
-      "Perfect for anyone wanting premium pasture-raised beef without the major freezer commitment.",
+      "Perfect for couples or small households who want premium pasture-raised beef without a big freezer commitment.",
     freezerSpace: "1-2 cubic feet",
     shipping: "shipping",
     included: [
@@ -126,7 +125,7 @@ const products: Product[] = [
     price: "$1,499",
     deposit: "Full payment at checkout",
     description:
-      "Great for couples and smaller families who want a great variety of beef to last several months.",
+      "Built for families who want a variety of premium beef with the perfect balance of savings and convenience.",
     freezerSpace: "2-4 cubic feet",
     shipping: "shipping",
     popular: true,
@@ -150,7 +149,7 @@ const products: Product[] = [
     name: "1/2 Beef",
     subtitle: "Half Share",
     weight: "~160 lbs",
-    price: "$2,999",
+    price: "$2,799",
     deposit: "Full payment at checkout",
     description:
       "Ideal for medium to large families who want high-quality beef, save over time, and always have premium cuts on hand.",
@@ -240,7 +239,7 @@ const products: Product[] = [
     name: "The Big Bird Box",
     subtitle: "Premium Chicken",
     weight: "~40 lbs",
-    price: "$429",
+    price: "$399",
     deposit: "Full payment at checkout",
     description:
       "Perfect for people stocking up on quality chicken for the whole family. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
@@ -708,7 +707,7 @@ export default function Products() {
                   <Truck className="w-4 h-4 text-golden inline-block align-text-bottom mr-1.5" />
                   The 1/8, 1/4, and 1/2 Beef shares can be picked up locally or shipped{" "}
                   <strong className="text-charcoal">(shipping calculated at checkout)</strong>.
-                  Whole Beef is local pickup only in Winchester, CA.
+                  The Beef Box and Whole Beef are local pickup only in Winchester, CA.
                 </p>
               </div>
             </div>
