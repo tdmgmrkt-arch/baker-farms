@@ -1,0 +1,45 @@
+# Baker Farms
+
+> Family-owned California ranch selling premium pasture-raised beef and chicken in monthly boxes and quarter, half, and whole shares. Local pickup in Winchester, CA and shipping available on select beef shares.
+
+## About
+
+- Family owned and operated
+- 100% grass-fed and grass-finished beef (Black & Red Angus)
+- Humanely raised, all-natural chicken with no hormones, antibiotics, soy, or corn
+- Animals are humanely processed
+- Local pickup location: Winchester, CA
+- Contact: bakermeatco@gmail.com
+
+## Products
+
+### Beef
+
+- **The Beef Box** — Monthly Share, ~20 lbs, $429. Curated butcher's-choice steaks plus ground beef. Local pickup only. ~1 cubic foot of freezer space.
+- **1/8 Beef** — Eighth Share, ~40 lbs, $825. Variety of steaks, roasts, ground beef, stew meat, short ribs. Pickup or shipping. 1–2 cubic feet of freezer space.
+- **1/4 Beef** — Quarter Share (most popular), ~80 lbs, $1,499. Larger variety pack with steaks, roasts, and ground beef. Pickup or shipping. 2–4 cubic feet of freezer space.
+- **1/2 Beef** — Half Share. Delivery: ~160 lbs, $2,799 (boneless cuts). Pickup: 200–250 lbs, $3,399 (includes bones, organs, fat, brisket). 7–10 cubic feet of freezer space.
+- **Whole Beef** — Full Share, 400–500 lbs, $6,799. Best value per pound. Local pickup only in Winchester, CA. 14–20 cubic feet of freezer space.
+
+Custom Beef Boxes available — tailored to your family's needs. Inquire at bakermeatco@gmail.com.
+
+### Chicken
+
+- **The Bird Box** — ~20 lbs, $229. 10 lbs boneless skinless thighs + 10 lbs boneless skinless breasts. Local pickup only.
+- **The Big Bird Box** — ~40 lbs, $399. 20 lbs boneless skinless thighs + 20 lbs boneless skinless breasts. Local pickup only.
+
+## Ordering
+
+- Full payment is collected at checkout via Stripe.
+- Pricing reflects estimated final yield.
+- The 1/8, 1/4, and 1/2 Beef shares ship nationally (shipping calculated at checkout) or can be picked up locally.
+- The Beef Box, Whole Beef, and all chicken boxes are local pickup only in Winchester, CA.
+
+## Key Pages
+
+- [Home](/) — Shop overview and brand story
+- [FAQ](/faq) — Common questions about ordering, processing, pickup, and shipping
+- [Shipping](/shipping) — Shipping policy and lead times
+- [Returns](/returns) — Return and refund policy
+- [Privacy](/privacy) — Privacy policy
+- [Terms](/terms) — Terms of service
