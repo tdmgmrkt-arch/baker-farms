@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,12 +19,19 @@ export default function Hero() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute inset-0 bg-cover bg-top sm:bg-center bg-no-repeat scale-105 will-change-transform"
-          style={{
-            backgroundImage: `url('/images/bakermeatshero.webp')`,
-            y: bgY,
-          }}
-        />
+          className="absolute inset-0 scale-105 will-change-transform"
+          style={{ y: bgY }}
+        >
+          <Image
+            src="/images/bakermeatshero.webp"
+            alt=""
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            className="object-cover object-top sm:object-center"
+          />
+        </motion.div>
         {/* Strong gradient for typography legibility — centered on mobile, left-biased on desktop */}
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent sm:bg-linear-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
         {/* Bottom-to-top vignette */}
