@@ -33,8 +33,7 @@ export default function ShippingPage() {
 
       <h3>Shipping — Select Products</h3>
       <p>
-        The <strong>The Beef Box</strong> (20 lb monthly share),{" "}
-        <strong>1/8 Beef</strong>, <strong>1/4 Beef</strong>, and{" "}
+        The <strong>1/8 Beef</strong>, <strong>1/4 Beef</strong>, and{" "}
         <strong>1/2 Beef</strong> shares are available for shipping. These
         products can also be picked up locally — you choose your preferred
         method at checkout. We ship using insulated packaging with dry ice to
@@ -58,7 +57,7 @@ export default function ShippingPage() {
       </p>
       <ul>
         <li>
-          <strong>Shipped ($2,999):</strong> ~160 lbs of boneless cuts (steaks,
+          <strong>Shipped ($2,799):</strong> ~160 lbs of boneless cuts (steaks,
           roasts, ground beef)
         </li>
         <li>

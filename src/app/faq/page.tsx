@@ -64,7 +64,7 @@ export default function FAQPage() {
       <h3>How much freezer space do I need?</h3>
       <p>Each share requires different amounts of space:</p>
       <ul>
-        <li><strong>The Beef Box (20 lb monthly):</strong> ~1 cubic foot</li>
+        <li><strong>The Beef Box (20 lb):</strong> ~1 cubic foot</li>
         <li><strong>1/8 Beef:</strong> 1–2 cubic feet</li>
         <li><strong>1/4 Beef:</strong> 2–4 cubic feet</li>
         <li><strong>1/2 Beef:</strong> 7–10 cubic feet</li>
@@ -84,17 +84,17 @@ export default function FAQPage() {
 
       <h3>Which products can be shipped?</h3>
       <p>
-        <strong>The Beef Box</strong> (20 lb monthly share),{" "}
         <strong>1/8 Beef</strong>, <strong>1/4 Beef</strong>, and{" "}
         <strong>1/2 Beef</strong> are available for both shipping and local
         pickup — you choose your preferred method at checkout. Shipping is
-        currently available within Southern California. All other products are
-        local pickup only in Winchester, CA.
+        currently available within Southern California. All other products,
+        including <strong>The Beef Box</strong>, are local pickup only in
+        Winchester, CA.
       </p>
 
       <h3>Why is the 1/2 Beef a different price and weight for shipping vs. pickup?</h3>
       <p>
-        Shipped 1/2 Beef orders (<strong>$2,999</strong>) are approximately{" "}
+        Shipped 1/2 Beef orders (<strong>$2,799</strong>) are approximately{" "}
         <strong>160 lbs</strong> of boneless cuts (steaks, roasts, ground beef).
         Local pickup orders (<strong>$3,399</strong>) are{" "}
         <strong>200–250 lbs</strong> because they include bones and organs in

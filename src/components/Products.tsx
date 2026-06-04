@@ -37,7 +37,7 @@ const categories: { label: Category; icon: LucideIcon | typeof LambIcon | typeof
 const categoryDescriptions: Record<Category, string | null> = {
   Beef: null,
   Chicken:
-    'Humanely raised premium all-natural chicken — no hormones, antibiotics, soy or corn. Local pickup only.',
+    'Humanely raised premium all-natural chicken — no hormones or antibiotics. Local pickup only.',
   Lamb: 'seasonal',
   Pork: 'seasonal',
   Turkey: 'seasonal',
@@ -73,8 +73,8 @@ const products: Product[] = [
   // ── Beef ──
   {
     name: "The Beef Box",
-    subtitle: "Monthly Share",
-    weight: "20 lbs",
+    subtitle: "1/6 share",
+    weight: "20lbs",
     price: "$429",
     deposit: "Full payment at checkout",
     description:
@@ -88,7 +88,7 @@ const products: Product[] = [
       "20 lbs total",
     ],
     category: "Beef",
-    image: "/images/steak2.webp",
+    image: "/images/thebeefbox.webp",
     paymentLink: "https://buy.stripe.com/dRm00j9Ps4mDd8M78efEk0k",
     note: "Each box is a curated selection of premium cuts. Items may vary based on availability.",
   },
@@ -224,7 +224,7 @@ const products: Product[] = [
     price: "$229",
     deposit: "Full payment at checkout",
     description:
-      "Perfect for people who want monthly chicken without the major freezer commitment. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
+      "Your go-to supply of premium chicken — balanced cuts, easy storage, and no bulk commitment.",
     freezerSpace: "~1 cubic foot",
     shipping: "pickup",
     included: [
@@ -242,7 +242,7 @@ const products: Product[] = [
     price: "$399",
     deposit: "Full payment at checkout",
     description:
-      "Perfect for people stocking up on quality chicken for the whole family. Humanely raised premium all-natural chicken with no hormones, antibiotics, soy or corn.",
+      "Premium chicken in bulk — better value, fewer restocks, and ready for real family use.",
     freezerSpace: "1-2 cubic feet",
     shipping: "pickup",
     included: [
@@ -250,7 +250,7 @@ const products: Product[] = [
       "20 lbs Boneless Skinless Chicken Breasts",
     ],
     category: "Chicken",
-    image: "/images/chicken.webp",
+    image: "/images/thebigbirdbox.webp",
     paymentLink: "https://buy.stripe.com/fZu00je5I6uL2u8gIOfEk0d",
   },
   // ── Lamb — currently seasonal, keep data on deck in case we re-list ──
