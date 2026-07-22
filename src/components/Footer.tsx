@@ -22,6 +22,7 @@ const navigation = [
   { label: "About Us", href: "/#about" },
   { label: "Our Meats", href: "/#products" },
   { label: "The Difference", href: "/#difference" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#order" },
 ];
 
@@ -29,6 +30,7 @@ const customerService = [
   { label: "Shipping Info", href: "/shipping" },
   { label: "Return Policy", href: "/returns" },
   { label: "FAQ", href: "/faq" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const socials = [
@@ -306,6 +308,21 @@ export default function Footer() {
               </svg>
             </div>
           </div>
+        </div>
+
+        {/* Attribution */}
+        <div className="border-t border-white/10 py-5 text-center">
+          <p className="text-white/30 text-xs">
+            Designed &amp; Developed by{" "}
+            <a
+              href="https://tdmarketinggroup.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-colors"
+            >
+              TD Marketing Group
+            </a>
+          </p>
         </div>
       </div>
     </motion.footer>
