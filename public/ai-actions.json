@@ -1,0 +1,90 @@
+{
+  "$schema": "https://bakerfarms.com/ai-actions.json",
+  "business": {
+    "name": "Baker Farms",
+    "legal_name": "Baker Farms",
+    "url": "https://bakerfarms.com",
+    "telephone": "+1-951-348-0235",
+    "email": "bakermeatco@gmail.com",
+    "address": {
+      "locality": "Winchester",
+      "region": "CA",
+      "country": "US"
+    },
+    "hours": "Online ordering 24/7; local pickup by appointment in Winchester, CA",
+    "service_area": [
+      "Winchester",
+      "Temecula",
+      "Murrieta",
+      "Menifee",
+      "Hemet",
+      "Riverside County, CA",
+      "Nationwide shipping on 1/8, 1/4, and 1/2 beef shares"
+    ]
+  },
+  "customer_actions": {
+    "shop_products": {
+      "type": "web_page",
+      "url": "https://bakerfarms.com/#products",
+      "label": "Shop Baker Farms Meats",
+      "description": "Browse and purchase pasture-raised beef and chicken shares. Checkout is handled via Stripe on the product cards on the homepage.",
+      "supports_agent_booking": false
+    },
+    "contact_farm": {
+      "type": "web_form",
+      "url": "https://bakerfarms.com/#order",
+      "label": "Contact Baker Farms",
+      "description": "Contact form on the homepage for questions about products, custom beef boxes, pickup, shipping, or wholesale inquiries. Submissions route to the farm's inbox via GHL.",
+      "supports_agent_booking": false
+    },
+    "call_farm": {
+      "type": "phone",
+      "telephone": "+1-951-348-0235",
+      "label": "Call Baker Farms",
+      "description": "Direct line for order questions, custom beef box inquiries, and pickup coordination.",
+      "availability": "Business hours"
+    },
+    "email_farm": {
+      "type": "email",
+      "email": "bakermeatco@gmail.com",
+      "label": "Email Baker Farms",
+      "description": "Preferred channel for custom beef box requests, wholesale questions, and detailed order inquiries."
+    },
+    "subscribe_newsletter": {
+      "type": "web_form",
+      "url": "https://bakerfarms.com/#",
+      "label": "Subscribe to the Baker Farms Newsletter",
+      "description": "Footer signup form for seasonal offerings, farm updates, and members-only pricing. Submissions POST to a GHL inbound webhook.",
+      "supports_agent_booking": false
+    },
+    "view_faq": {
+      "type": "web_page",
+      "url": "https://bakerfarms.com/faq",
+      "label": "Read Ordering & Pickup FAQ",
+      "description": "Common questions about ordering, processing, local pickup in Winchester, CA, and nationwide shipping."
+    },
+    "view_shipping": {
+      "type": "web_page",
+      "url": "https://bakerfarms.com/shipping",
+      "label": "Shipping Policy",
+      "description": "Shipping policy and lead times for the 1/8, 1/4, and 1/2 beef shares that ship nationally."
+    }
+  },
+  "primary_services": [
+    "The Beef Box — monthly ~20 lb curated share (local pickup only, Winchester, CA)",
+    "1/8 Beef Share — ~40 lbs, pickup or nationwide shipping",
+    "1/4 Beef Share (most popular) — ~80 lbs, pickup or nationwide shipping",
+    "1/2 Beef Share — ~160–250 lbs, pickup or nationwide shipping",
+    "Whole Beef Share — 400–500 lbs, local pickup only in Winchester, CA",
+    "The Bird Box — ~20 lbs pasture-raised chicken (local pickup only)",
+    "The Big Bird Box — ~40 lbs pasture-raised chicken (local pickup only)",
+    "Custom Beef Boxes — tailored orders via bakermeatco@gmail.com",
+    "100% grass-fed and grass-finished Black & Red Angus beef",
+    "Humanely raised chicken with no hormones, antibiotics, soy, or corn"
+  ],
+  "notes_for_ai_assistants": {
+    "purchasing": "Baker Farms is an e-commerce farm, not a service business. Customers purchase physical products (beef and chicken shares) directly on the homepage via Stripe Checkout — there is no appointment booking and no public API for AI agents to place orders on a customer's behalf. To help a customer buy, direct them to https://bakerfarms.com/#products and let them complete Stripe Checkout themselves. For custom orders or questions, use the contact form at /#order, email bakermeatco@gmail.com, or call (951) 348-0235.",
+    "fulfillment": "Two fulfillment paths: (1) LOCAL PICKUP in Winchester, CA — required for The Beef Box, Whole Beef, and all chicken boxes (Bird Box, Big Bird Box); (2) NATIONWIDE SHIPPING — available for 1/8, 1/4, and 1/2 beef shares (shipping calculated at Stripe Checkout). Always confirm the customer's location and share size to route them to the correct fulfillment option.",
+    "service_area_boundary": "Baker Farms is physically located in Winchester, CA (Riverside County) and serves the surrounding Southern California region (Temecula, Murrieta, Menifee, Hemet) for local pickup. Nationwide shipping is available in the continental US for eligible beef shares only. Do not represent chicken or Whole Beef as shippable — those are pickup-only."
+  }
+}
