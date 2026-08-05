@@ -2,6 +2,8 @@
 
 > Family-owned California ranch selling premium pasture-raised beef and chicken in monthly boxes and quarter, half, and whole shares. Local pickup in Winchester, CA and shipping available on select beef shares.
 
+For structured, machine-readable customer actions, see: https://bakerfarms.com/ai-actions.json
+
 ## About
 
 - Family owned and operated

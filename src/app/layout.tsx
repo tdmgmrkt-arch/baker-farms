@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   title: "Baker Farms | Premium Pasture-Raised Meats",
   description:
     "Ethically raised, premium pasture-raised meats delivered to your door. Experience the Baker Farms difference.",
+  alternates: {
+    types: {
+      "application/json": [
+        { url: "/ai-actions.json", title: "Baker Farms AI Service Menu" },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
