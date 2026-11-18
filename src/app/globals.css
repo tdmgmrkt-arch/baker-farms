@@ -209,3 +209,104 @@ html {
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
 }
+
+/* Blog post typography — scoped to direct children so nested UI components (e.g. related-posts grid) aren't affected */
+.prose-blog > .lede {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #2C2C2C;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #C8973E33;
+}
+.prose-blog > h2 {
+  font-family: var(--font-playfair);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
+}
+.prose-blog > h3 {
+  font-family: var(--font-playfair);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-top: 2rem;
+  margin-bottom: 0.875rem;
+  line-height: 1.35;
+}
+.prose-blog > p {
+  color: #5C4033D9;
+  font-size: 1rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.prose-blog > ul,
+.prose-blog > ol {
+  padding: 0;
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+.prose-blog > ul > li,
+.prose-blog > ol > li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: #5C4033D9;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0.625rem;
+}
+.prose-blog > ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  top: 0.75rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8B2E2E;
+}
+.prose-blog > ol {
+  counter-reset: item;
+}
+.prose-blog > ol > li {
+  counter-increment: item;
+}
+.prose-blog > ol > li::before {
+  content: counter(item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #8B2E2E;
+  font-weight: 700;
+  font-family: var(--font-playfair);
+}
+.prose-blog strong {
+  color: #2C2C2C;
+  font-weight: 600;
+}
+.prose-blog em {
+  font-style: italic;
+  color: #5C4033;
+}
+.prose-blog > p a,
+.prose-blog > ul > li a,
+.prose-blog > ol > li a,
+.prose-blog > .lede a {
+  color: #8B2E2E;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #8B2E2E4D;
+  text-underline-offset: 3px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.prose-blog > p a:hover,
+.prose-blog > ul > li a:hover,
+.prose-blog > ol > li a:hover,
+.prose-blog > .lede a:hover {
+  color: #6E2424;
+  text-decoration-color: #6E2424;
+}

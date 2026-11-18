@@ -11,6 +11,7 @@ const navLinks = [
   { label: "About Us", href: "/#about" },
   { label: "Our Meats", href: "/#products" },
   { label: "The Difference", href: "/#difference" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#order" },
 ];
 
